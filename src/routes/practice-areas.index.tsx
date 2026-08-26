@@ -28,10 +28,16 @@ const groups = ["Labour & Employment", "Business Registration", "Licensing & Cle
 function PracticeAreas() {
   return (
     <>
-      <header className="grain relative bg-ink pb-24 pt-40 text-onink md:pt-52">
-        <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <header className="grain relative isolate overflow-hidden bg-ink pb-24 pt-40 text-onink md:pt-52">
+        <img
+          src={img.documents}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[44%] object-cover saturate-[0.5]"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/92 to-ink/45" aria-hidden="true" />
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <p className="label-micro text-golddeep">Practice / 01</p>
+          <p className="label-micro text-gold-dim">Practice / 01</p>
           <h1 className="mt-8 display-xl text-onink">Practice areas</h1>
           <p className="mt-10 max-w-xl border-l border-gold/60 pl-6 text-sm leading-relaxed text-onink-muted">
             Focused assistance across essential statutory and business requirements — grouped by the nature of
@@ -39,6 +45,7 @@ function PracticeAreas() {
           </p>
         </div>
       </header>
+
 
       <div className="bg-ivory py-24 md:py-32">
         <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
