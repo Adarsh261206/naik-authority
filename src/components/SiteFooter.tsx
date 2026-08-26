@@ -6,9 +6,9 @@ export function SiteFooter() {
   const o = advocate.office;
   return (
     <footer className="bg-[#1b1511] pb-28 pt-20 md:pb-14">
-      <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
-        <div className="grid gap-12 md:grid-cols-4">
-          <div className="md:col-span-2">
+      <div className="shell">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+          <div className="col-span-12 md:col-span-5">
             <div className="flex items-center gap-3">
               <Monogram size={44} tone="light" />
               <div>
@@ -20,7 +20,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div>
+          <div className="col-span-6 md:col-span-3 md:col-start-7">
             <p className="eyebrow text-bronze">Navigate</p>
             <ul className="mt-5 space-y-3">
               {nav.map((item) => (
@@ -37,7 +37,7 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div>
+          <div className="col-span-6 md:col-span-3">
             <p className="eyebrow text-bronze">Office</p>
             <address className="mt-5 not-italic text-sm leading-relaxed text-ondarkmuted">
               {o.line1}

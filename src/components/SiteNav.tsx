@@ -27,11 +27,13 @@ export function SiteNav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled ? "border-b border-beige bg-ivory/90 backdrop-blur-md" : "border-b border-transparent"
+        scrolled
+          ? "border-b border-beige bg-ivory/90 backdrop-blur-md"
+          : "border-b border-transparent"
       }`}
     >
       <div
-        className={`mx-auto flex w-full max-w-[1500px] items-center justify-between px-5 transition-all duration-500 md:px-10 ${
+        className={`shell flex  items-center justify-between transition-all duration-500 ${
           scrolled ? "h-16" : "h-20 md:h-24"
         }`}
       >
@@ -39,7 +41,9 @@ export function SiteNav() {
           <Monogram size={scrolled ? 34 : 38} className="transition-all duration-500" />
           <span className="leading-tight">
             <span className="block font-display text-lg text-ink">{advocate.name}</span>
-            <span className="block text-[11px] tracking-[0.12em] text-inkmuted">{advocate.title}</span>
+            <span className="block text-[11px] tracking-[0.12em] text-inkmuted">
+              {advocate.title}
+            </span>
           </span>
         </Link>
 
@@ -62,10 +66,7 @@ export function SiteNav() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <Link
-            to="/contact"
-            className="hidden rounded-[3px] bg-espresso px-6 py-3 text-sm text-cream transition-colors duration-200 hover:bg-brown lg:block"
-          >
+          <Link to="/contact" className="btn-primary hidden !h-12 lg:inline-flex">
             Book Consultation
           </Link>
           <button
@@ -101,10 +102,7 @@ export function SiteNav() {
               {item.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="mt-10 rounded-[3px] bg-espresso px-6 py-4 text-center text-sm text-cream"
-          >
+          <Link to="/contact" className="btn-primary mt-10 w-full">
             Book Consultation
           </Link>
         </nav>

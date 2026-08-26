@@ -56,7 +56,8 @@ export const services: Service[] = [
     slug: "labour-law-licenses",
     index: "01",
     title: "Labour Law Licenses / Compliances",
-    short: "Assistance with labour-law registrations, licences and periodic compliance obligations.",
+    short:
+      "Assistance with labour-law registrations, licences and periodic compliance obligations.",
     node: "Labour",
     category: "Labour & Employment",
     overview:
@@ -77,7 +78,8 @@ export const services: Service[] = [
     slug: "provident-fund-act",
     index: "02",
     title: "Provident Fund Act",
-    short: "Registration and ongoing compliance support under the Employees' Provident Fund framework.",
+    short:
+      "Registration and ongoing compliance support under the Employees' Provident Fund framework.",
     node: "PF",
     category: "Labour & Employment",
     overview:

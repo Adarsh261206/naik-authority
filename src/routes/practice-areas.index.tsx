@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/data/site";
-import { img, serviceAlt, serviceImage } from "@/data/images";
+import { focus, img, visualFor } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/")({
   head: () => ({
@@ -15,7 +15,8 @@ export const Route = createFileRoute("/practice-areas/")({
       { property: "og:title", content: "Practice Areas — Ravindra R. Naik, Advocate" },
       {
         property: "og:description",
-        content: "Statutory registrations, licences and labour law compliance assistance for businesses.",
+        content:
+          "Statutory registrations, licences and labour law compliance assistance for businesses.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -32,8 +33,8 @@ function PracticeIndex() {
   return (
     <>
       <header className="bg-ivory pt-28 md:pt-32">
-        <div className="mx-auto grid w-full max-w-[1500px] items-end gap-10 px-5 py-14 md:px-10 lg:grid-cols-[45%_55%] lg:gap-16">
-          <div>
+        <div className="shell grid grid-cols-12 items-end gap-x-6 gap-y-10 pt-8 pb-16">
+          <div className="col-span-12 lg:col-span-5">
             <p className="eyebrow text-brown">Practice</p>
             <h1 className="mt-6 display-xl text-ink">
               Practice
@@ -44,20 +45,20 @@ function PracticeIndex() {
               Eleven areas of statutory assistance, grouped by the kind of obligation they create.
             </p>
           </div>
-          <div className="overflow-hidden rounded-tr-[60px]">
+          <div className="col-span-12 overflow-hidden rounded-tr-[60px] lg:col-span-6 lg:col-start-7">
             <img
               src={img.documents}
-              alt="Statutory forms, registers and folders arranged on a pale desk"
+              alt="Statutory registration forms, a stamped certificate and folders on a warm oak desk"
               width={1408}
-              height={1008}
-              className="image-reveal h-[38vh] min-h-[240px] w-full object-cover md:h-[52vh]"
+              height={1104}
+              className={`image-reveal aspect-[4/3] w-full object-cover ${focus.documents}`}
             />
           </div>
         </div>
       </header>
 
-      <section className="bg-paper py-20 md:py-28">
-        <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+      <section className="bg-paper section-y">
+        <div className="shell ">
           {groups.map((g, gi) => (
             <div key={g} className="mb-16 last:mb-0">
               <div className="flex items-baseline gap-5 border-b border-beige pb-5">
@@ -76,8 +77,8 @@ function PracticeIndex() {
                       >
                         <div className="relative h-24 w-28 shrink-0 overflow-hidden rounded-[3px]">
                           <img
-                            src={serviceImage[s.slug]}
-                            alt={serviceAlt[s.slug] ?? s.title}
+                            src={visualFor(s.slug).src}
+                            alt={visualFor(s.slug).alt}
                             width={800}
                             height={600}
                             loading="lazy"
@@ -85,7 +86,9 @@ function PracticeIndex() {
                           />
                         </div>
                         <div>
-                          <span className="text-xs tracking-[0.16em] text-inkmuted/70">{s.index}</span>
+                          <span className="text-xs tracking-[0.16em] text-inkmuted/70">
+                            {s.index}
+                          </span>
                           <h3 className="mt-1 font-display text-2xl font-light text-ink transition-colors group-hover:text-brown">
                             {s.title}
                           </h3>

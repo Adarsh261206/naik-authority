@@ -1,98 +1,144 @@
-import heroOffice from "@/assets/v2-hero-office.jpg";
-import heroDetail from "@/assets/v2-hero-detail.jpg";
-import library from "@/assets/v2-library.jpg";
-import documents from "@/assets/v2-documents.jpg";
-import consultation from "@/assets/v2-consultation.jpg";
-import architecture from "@/assets/v2-architecture.jpg";
-import establishment from "@/assets/v2-establishment.jpg";
-import industry from "@/assets/v2-industry.jpg";
-import records from "@/assets/v2-records.jpg";
-import office from "@/assets/v2-office.jpg";
-import statement from "@/assets/v2-statement.jpg";
-import about from "@/assets/v2-about.jpg";
-import thane from "@/assets/v2-thane.jpg";
+import heroOffice from "@/assets/v3-hero-law-office.jpg";
+import library from "@/assets/v3-library.jpg";
+import documents from "@/assets/v3-documents.jpg";
+import consultation from "@/assets/v3-business.jpg";
+import commercial from "@/assets/v3-commercial.jpg";
+import establishment from "@/assets/v3-establishment.jpg";
+import records from "@/assets/v3-records.jpg";
+import statement from "@/assets/v3-statement.jpg";
+import about from "@/assets/v3-about.jpg";
+import thane from "@/assets/v3-thane.jpg";
 
 export const img = {
   heroOffice,
-  heroDetail,
   library,
   documents,
   consultation,
-  architecture,
+  commercial,
   establishment,
-  industry,
   records,
-  office,
   statement,
   about,
   thane,
 };
 
-export const serviceImage: Record<string, string> = {
-  "labour-law-licenses": industry,
-  "provident-fund-act": records,
-  "esic-act": consultation,
-  "mlwf-act": records,
-  "professional-tax": documents,
-  "shop-act-gumasta": establishment,
-  "msme-udyam-registration": office,
-  "fssai-food-licence": establishment,
-  "health-trade-licence": establishment,
-  "fire-noc": architecture,
-  "pollution-control-act": industry,
+/** Deliberate focal points — never rely on the default centre crop. */
+export const focus = {
+  heroOffice: "object-[62%_58%]",
+  library: "object-[55%_70%]",
+  documents: "object-[58%_55%]",
+  consultation: "object-[50%_45%]",
+  commercial: "object-[48%_40%]",
+  establishment: "object-[62%_45%]",
+  records: "object-[55%_50%]",
+  statement: "object-[42%_55%]",
+  about: "object-[60%_55%]",
+  thane: "object-[50%_35%]",
+} as const;
+
+type ServiceVisual = { src: string; alt: string; focus: string };
+
+const legalDocuments: ServiceVisual = {
+  src: documents,
+  alt: "Statutory registration forms, a stamped certificate and file folders on a warm oak desk",
+  focus: focus.documents,
+};
+const businessRecords: ServiceVisual = {
+  src: records,
+  alt: "Tied bundles of statutory registers and business records on wooden shelves",
+  focus: focus.records,
+};
+const advisory: ServiceVisual = {
+  src: consultation,
+  alt: "Business owners reviewing compliance documents across a wooden conference table",
+  focus: focus.consultation,
+};
+const establishmentStreet: ServiceVisual = {
+  src: establishment,
+  alt: "Commercial establishments and shopfronts along a sunlit Indian street",
+  focus: focus.establishment,
+};
+const commercialBuilding: ServiceVisual = {
+  src: commercial,
+  alt: "Modern Indian commercial office building facade in warm daylight",
+  focus: focus.commercial,
 };
 
-export const serviceAlt: Record<string, string> = {
-  "labour-law-licenses": "Light-filled workshop floor with machinery and workers",
-  "provident-fund-act": "Payroll ledgers and tied file bundles on a bright desk",
-  "esic-act": "Two people reviewing documents across a light wooden table",
-  "mlwf-act": "Open register and bundled records in warm daylight",
-  "professional-tax": "Statutory forms, folders and a pen arranged on a pale desk",
-  "shop-act-gumasta": "Commercial shopfronts along a sunlit street",
-  "msme-udyam-registration": "Bright modern Indian office interior",
-  "fssai-food-licence": "Commercial establishment street front in daylight",
-  "health-trade-licence": "Retail and commercial premises on a clean street",
-  "fire-noc": "Modern commercial building facade in warm light",
-  "pollution-control-act": "Industrial workshop interior with daylight",
+/** Every service points at a semantically relevant frame from one collection. */
+export const serviceVisual: Record<string, ServiceVisual> = {
+  "labour-law-licenses": legalDocuments,
+  "provident-fund-act": businessRecords,
+  "esic-act": advisory,
+  "mlwf-act": businessRecords,
+  "professional-tax": legalDocuments,
+  "shop-act-gumasta": establishmentStreet,
+  "msme-udyam-registration": advisory,
+  "fssai-food-licence": establishmentStreet,
+  "health-trade-licence": establishmentStreet,
+  "fire-noc": commercialBuilding,
+  "pollution-control-act": commercialBuilding,
 };
 
+export const defaultServiceVisual: ServiceVisual = {
+  src: library,
+  alt: "Open statute volume on a reading table in a warm sunlit law library",
+  focus: focus.library,
+};
+
+export function visualFor(slug: string): ServiceVisual {
+  return serviceVisual[slug] ?? defaultServiceVisual;
+}
+
+/** Curated sequence: legal → documents → consultation → commercial → chamber → city. */
 export const gallery = [
   {
     src: library,
+    focus: focus.library,
     label: "Legal / 01",
     caption: "Reference & research",
-    alt: "Sunlit law library with tall shelves of legal volumes",
+    alt: "Sunlit law library with tall shelves of legal volumes and an open statute book",
   },
   {
     src: documents,
+    focus: focus.documents,
     label: "Advisory / 02",
     caption: "Statutory documentation",
-    alt: "Registration forms and folders arranged on a pale desk",
+    alt: "Registration forms, a stamped certificate and folders on a warm oak desk",
   },
   {
     src: consultation,
+    focus: focus.consultation,
     label: "Counsel / 03",
     caption: "Consultation",
-    alt: "Hands reviewing printed documents across a wooden table",
+    alt: "Business owners in discussion over printed documents at a wooden table",
   },
   {
-    src: architecture,
+    src: commercial,
+    focus: focus.commercial,
     label: "Business / 04",
     caption: "Commercial premises",
-    alt: "Modern commercial building facade in warm light",
+    alt: "Modern Indian commercial office building facade in warm daylight",
   },
   {
-    src: office,
+    src: about,
+    focus: focus.about,
     label: "Practice / 05",
-    caption: "Establishments",
-    alt: "Bright modern Indian office interior",
+    caption: "The chamber",
+    alt: "Advocate's chamber with an oak desk, cane chair and bundled case files",
   },
   {
     src: thane,
+    focus: focus.thane,
     label: "Thane / 06",
     caption: "Where we practise",
     alt: "Thane and Mumbai skyline in warm hazy daylight",
   },
 ];
 
-export const processImages = [consultation, documents, records, establishment, library];
+export const processImages = [
+  { src: consultation, focus: focus.consultation, alt: "" },
+  { src: documents, focus: focus.documents, alt: "" },
+  { src: records, focus: focus.records, alt: "" },
+  { src: establishment, focus: focus.establishment, alt: "" },
+  { src: library, focus: focus.library, alt: "" },
+];

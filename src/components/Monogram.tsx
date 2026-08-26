@@ -15,7 +15,10 @@ export function Monogram({
       style={{ width: size, height: size }}
       aria-hidden="true"
     >
-      <span className="font-display leading-none" style={{ fontSize: size * 0.44, letterSpacing: "0.02em" }}>
+      <span
+        className="font-display leading-none"
+        style={{ fontSize: size * 0.44, letterSpacing: "0.02em" }}
+      >
         RN
       </span>
     </span>
