@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ConsultForm } from "@/components/ConsultForm";
 import { Reveal } from "@/components/Reveal";
 import { advocate, directionsHref, mailHref, mapEmbedSrc, telHref, whatsappHref } from "@/data/site";
+import { img } from "@/data/images";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
