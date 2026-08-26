@@ -47,7 +47,7 @@ function Disclaimer() {
     <>
       <header className="grain relative bg-ink pb-24 pt-40 text-onink md:pt-52">
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <p className="label-micro text-gold-dim">Legal / Disclaimer</p>
+          <p className="label-micro text-golddeep">Legal / Disclaimer</p>
           <h1 className="mt-8 display-lg text-onink">Disclaimer</h1>
         </div>
       </header>
@@ -55,7 +55,7 @@ function Disclaimer() {
         <div className="mx-auto w-full max-w-3xl px-5 md:px-10">
           {sections.map((s, i) => (
             <section key={s.h} className="border-t border-foreground/12 py-10 first:border-t-0">
-              <p className="label-micro text-gold-dim">{String(i + 1).padStart(2, "0")}</p>
+              <p className="label-micro text-golddeep">{String(i + 1).padStart(2, "0")}</p>
               <h2 className="mt-4 font-display text-3xl font-light">{s.h}</h2>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.p}</p>
             </section>

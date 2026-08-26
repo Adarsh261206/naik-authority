@@ -63,7 +63,7 @@ function ServicePage() {
                 <ul className="mt-8 max-w-2xl space-y-6">
                   {service.context.map((c, i) => (
                     <li key={c} className="flex gap-6 border-t border-foreground/12 pt-6">
-                      <span className="label-micro shrink-0 text-gold-dim">0{i + 1}</span>
+                      <span className="label-micro shrink-0 text-golddeep">0{i + 1}</span>
                       <p className="text-sm leading-relaxed text-muted-foreground">{c}</p>
                     </li>
                   ))}
@@ -124,7 +124,7 @@ function ServicePage() {
                         params={{ slug: r!.slug }}
                         className="group flex items-baseline gap-4 border-b border-foreground/12 py-5"
                       >
-                        <span className="label-micro text-gold-dim">{r!.index}</span>
+                        <span className="label-micro text-golddeep">{r!.index}</span>
                         <span className="font-display text-xl transition-transform duration-300 group-hover:translate-x-1">
                           {r!.title}
                         </span>
@@ -132,7 +132,7 @@ function ServicePage() {
                     </li>
                   ))}
                 </ul>
-                <Link to="/practice-areas" className="label-micro mt-8 inline-block text-gold-dim link-underline">
+                <Link to="/practice-areas" className="label-micro mt-8 inline-block text-golddeep link-underline">
                   All {services.length} practice areas →
                 </Link>
               </div>

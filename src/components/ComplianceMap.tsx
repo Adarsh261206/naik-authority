@@ -80,7 +80,7 @@ export function ComplianceMap() {
 
       {/* Detail panel */}
       <div className="hidden md:block">
-        <p className="label-micro text-gold-dim">
+        <p className="label-micro text-golddeep">
           {current.index} / {current.category}
         </p>
         <h3 className="mt-5 font-display text-4xl font-light text-foreground">{current.title}</h3>
@@ -100,7 +100,7 @@ export function ComplianceMap() {
         {services.map((s) => (
           <li key={s.slug} className="relative border-l border-onink/15 pb-8 pl-6">
             <span className="absolute -left-[3.5px] top-2 h-[7px] w-[7px] rounded-full bg-gold" />
-            <p className="label-micro text-gold-dim">{s.index}</p>
+            <p className="label-micro text-golddeep">{s.index}</p>
             <p className="mt-2 font-display text-2xl text-foreground">{s.title}</p>
             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.short}</p>
           </li>

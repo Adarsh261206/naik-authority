@@ -17,12 +17,12 @@ export function Faq() {
                 aria-expanded={isOpen}
                 className="flex w-full items-start gap-6 py-7 text-left transition-colors duration-200 hover:text-foreground/70"
               >
-                <span className={`label-micro mt-2 shrink-0 ${isOpen ? "text-gold-dim" : "text-muted-foreground"}`}>
+                <span className={`label-micro mt-2 shrink-0 ${isOpen ? "text-golddeep" : "text-muted-foreground"}`}>
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <span className="flex-1 font-display text-2xl font-light md:text-3xl">{f.q}</span>
                 <span
-                  className={`mt-2 shrink-0 text-gold-dim transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                  className={`mt-2 shrink-0 text-golddeep transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
                   aria-hidden="true"
                 >
                   +
