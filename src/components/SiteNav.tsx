@@ -49,8 +49,7 @@ export function SiteNav() {
 
         <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
-            const active =
-              !("hash" in item) && (pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to)));
+            const active = !("hash" in item) && pathname.startsWith(item.to);
             return (
               <Link
                 key={item.label}
