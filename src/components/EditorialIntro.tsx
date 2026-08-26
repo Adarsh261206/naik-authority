@@ -4,7 +4,7 @@ import { img } from "@/data/images";
 export function EditorialIntro() {
   return (
     <section className="bg-sand">
-      <div className="mx-auto grid max-w-[1600px] gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-[40%_60%] lg:gap-16">
+      <div className="mx-auto grid max-w-[1600px] items-center gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-[40%_60%] lg:gap-16">
         <Reveal>
           <p className="label-micro text-golddeep">01 — Introduction</p>
           <h2 className="mt-8 font-display text-[clamp(2.6rem,4.6vw,4.6rem)] font-light leading-[0.95] text-foreground">
