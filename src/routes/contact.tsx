@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ConsultForm } from "@/components/ConsultForm";
 import { Reveal } from "@/components/Reveal";
 import { advocate, directionsHref, mailHref, mapEmbedSrc, telHref, whatsappHref } from "@/data/site";
+import { img } from "@/data/images";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -24,8 +25,14 @@ export const Route = createFileRoute("/contact")({
 function Contact() {
   return (
     <>
-      <section className="grain relative bg-ink pb-28 pt-40 text-onink md:pt-52">
-        <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <section className="grain relative isolate overflow-hidden bg-ink pb-28 pt-40 text-onink md:pt-52">
+        <img
+          src={img.consultation}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[40%] object-cover saturate-[0.5] lg:block"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/94 to-ink/45" aria-hidden="true" />
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
           <div className="grid gap-16 lg:grid-cols-[1fr_1.2fr]">
             <div>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Monogram } from "@/components/Monogram";
 import { Reveal } from "@/components/Reveal";
 import { advocate, mailHref, services, telHref } from "@/data/site";
+import { img } from "@/data/images";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -27,7 +28,13 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <header className="grain relative bg-ink pb-28 pt-40 text-onink md:pt-56">
+      <header className="grain relative isolate overflow-hidden bg-ink pb-28 pt-40 text-onink md:pt-56">
+        <img
+          src={img.aboutChamber}
+          alt="Advocate's chamber with law books and a warm lamp"
+          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[42%] object-cover saturate-[0.55] md:block"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/92 to-ink/40" aria-hidden="true" />
         <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
         <div
           className="pointer-events-none absolute right-[8%] top-[22%] hidden h-[60%] w-[22%] border border-onink/12 lg:block"

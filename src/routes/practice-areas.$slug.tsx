@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { disclaimerShort, getService, services, telHref, whatsappHref } from "@/data/site";
+import { serviceAlt, serviceImage } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/$slug")({
   loader: ({ params }) => {
@@ -34,8 +35,15 @@ function ServicePage() {
 
   return (
     <>
-      <header className="grain relative bg-ink pb-24 pt-40 text-onink md:pt-52">
-        <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
+      <header className="grain relative isolate overflow-hidden bg-ink pb-24 pt-40 text-onink md:pt-52">
+        <img
+          src={serviceImage[service.slug]}
+          alt={serviceAlt[service.slug] ?? service.title}
+          width={900}
+          height={1350}
+          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[46%] object-cover saturate-[0.55] md:block"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/92 to-ink/40" aria-hidden="true" />
         <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
           <Link to="/practice-areas" className="label-micro text-onink-muted link-underline">
             ← Practice areas
@@ -43,12 +51,13 @@ function ServicePage() {
           <p className="label-micro mt-10 text-gold-dim">
             {service.index} / {service.category}
           </p>
-          <h1 className="mt-8 display-lg text-onink">{service.title}</h1>
-          <p className="mt-10 max-w-2xl border-l border-gold/60 pl-6 text-base leading-relaxed text-onink-muted">
+          <h1 className="mt-8 display-lg max-w-[60%] text-onink">{service.title}</h1>
+          <p className="mt-10 max-w-xl border-l border-gold/60 pl-6 text-base leading-relaxed text-onink-muted">
             {service.short}
           </p>
         </div>
       </header>
+
 
       <div className="bg-ivory py-24 md:py-32">
         <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
