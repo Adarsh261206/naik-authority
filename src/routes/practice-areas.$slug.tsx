@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { disclaimerShort, getService, services, telHref, whatsappHref } from "@/data/site";
+import { serviceAlt, serviceImage } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/$slug")({
   loader: ({ params }) => {
