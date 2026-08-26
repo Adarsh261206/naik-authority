@@ -1,103 +1,110 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { services } from "@/data/site";
 import { serviceAlt, serviceImage } from "@/data/images";
+import { services } from "@/data/site";
+import { Reveal } from "./Reveal";
 
 export function PracticeShowcase() {
-  const [active, setActive] = useState<number>(0);
+  const [active, setActive] = useState(0);
   const current = services[active] ?? services[0]!;
 
   return (
-    <section id="practice" className="relative bg-ink grain">
-      <div className="mx-auto grid max-w-[1600px] gap-12 px-5 py-24 md:px-10 md:py-32 lg:grid-cols-[40%_60%]">
-        {/* Left statement + preview image */}
-        <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="label-micro text-gold-dim">02 — The practice</p>
-          <h2 className="mt-8 font-display text-[clamp(2.6rem,4.4vw,4.4rem)] font-light leading-[0.95] text-onink">
-            Business
-            <br />
-            compliance
-            <br />
-            requires
-            <br />
-            <span className="italic text-gold-dim">clarity.</span>
-          </h2>
-          <div className="relative mt-10 hidden aspect-[4/3] w-full overflow-hidden lg:block">
-            {services.map((s, i) => (
-              <img
-                key={s.slug}
-                src={serviceImage[s.slug]}
-                alt={serviceAlt[s.slug] ?? s.title}
-                width={900}
-                height={1350}
-                loading="lazy"
-                aria-hidden={i !== active}
-                className="absolute inset-0 h-full w-full object-cover saturate-[0.6] transition-opacity duration-700"
-                style={{ opacity: i === active ? 1 : 0 }}
-              />
-            ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-transparent" />
-            <p className="label-micro absolute bottom-4 left-4 text-onink/90">
-              {current.index} / {current.node}
-            </p>
-          </div>
-        </div>
+    <section id="practice" className="bg-paper py-24 md:py-32">
+      <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+        <div className="grid gap-12 lg:grid-cols-[38%_62%] lg:gap-16">
+          <div>
+            <Reveal>
+              <p className="eyebrow text-brown">02 — The practice</p>
+              <h2 className="mt-6 display-lg text-ink">
+                Areas
+                <br />
+                of practice
+              </h2>
+            </Reveal>
 
-        {/* Rows */}
-        <div className="border-t border-onink/12">
-          {services.map((s, i) => {
-            const on = i === active;
-            return (
-              <div key={s.slug} className="border-b border-onink/12">
+            {/* Preview image (desktop) */}
+            <Reveal delay={120}>
+              <div className="relative mt-10 hidden aspect-[4/5] w-full overflow-hidden rounded-tl-[48px] lg:block">
+                {services.map((s, i) => (
+                  <img
+                    key={s.slug}
+                    src={serviceImage[s.slug]}
+                    alt={serviceAlt[s.slug] ?? s.title}
+                    width={1200}
+                    height={1500}
+                    loading="lazy"
+                    className={`absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out ${
+                      i === active ? "scale-100 opacity-100" : "scale-105 opacity-0"
+                    }`}
+                  />
+                ))}
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-espresso/70 to-transparent p-6">
+                  <p className="text-xs tracking-[0.16em] uppercase text-ondark">{current.category}</p>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="border-t border-beige">
+            {services.map((s, i) => {
+              const isActive = i === active;
+              return (
                 <Link
+                  key={s.slug}
                   to="/practice-areas/$slug"
                   params={{ slug: s.slug }}
-                  data-cursor="explore"
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
-                  className="group relative block px-1 py-7 transition-colors duration-300 hover:bg-onink/[0.03] md:px-4"
+                  className="group block border-b border-beige py-6 md:py-7"
                 >
-                  <span
-                    className={`absolute left-0 top-0 h-full w-px origin-top bg-gold transition-transform duration-500 ${on ? "scale-y-100" : "scale-y-0"}`}
-                  />
-                  <div className="flex items-center gap-5">
-                    <span className={`label-micro w-8 shrink-0 ${on ? "text-gold" : "text-onink-muted/50"}`}>
+                  <div className="flex items-start gap-5 md:gap-8">
+                    <span
+                      className={`mt-2 shrink-0 text-xs tracking-[0.16em] transition-colors ${
+                        isActive ? "text-brown" : "text-inkmuted/70"
+                      }`}
+                    >
                       {s.index}
                     </span>
-                    <span className="flex-1 font-display text-2xl font-light leading-tight text-onink transition-transform duration-500 group-hover:translate-x-2 md:text-[2.1rem]">
-                      {s.title}
-                    </span>
+                    <div className="flex-1">
+                      <h3
+                        className={`font-display text-2xl font-light transition-transform duration-500 ease-out md:text-[2.1rem] ${
+                          isActive ? "translate-x-2 text-brown" : "text-ink"
+                        }`}
+                      >
+                        {s.title}
+                      </h3>
+                      <p
+                        className={`overflow-hidden text-sm leading-relaxed text-inkmuted transition-all duration-500 ease-out ${
+                          isActive ? "mt-3 max-h-24 opacity-100" : "max-h-0 opacity-0 lg:max-h-0"
+                        }`}
+                      >
+                        {s.short}
+                      </p>
+                      {/* Mobile inline image */}
+                      <div className="mt-4 overflow-hidden rounded-[3px] lg:hidden">
+                        <img
+                          src={serviceImage[s.slug]}
+                          alt={serviceAlt[s.slug] ?? s.title}
+                          width={1200}
+                          height={800}
+                          loading="lazy"
+                          className="h-36 w-full object-cover"
+                        />
+                      </div>
+                    </div>
                     <span
-                      className={`label-micro shrink-0 text-gold transition-opacity duration-300 ${on ? "opacity-100" : "opacity-0"}`}
+                      className={`mt-2 shrink-0 text-brown transition-all duration-300 ${
+                        isActive ? "translate-x-0 opacity-100" : "-translate-x-2 opacity-0"
+                      }`}
+                      aria-hidden="true"
                     >
                       →
                     </span>
                   </div>
-                  <div
-                    className="grid overflow-hidden transition-[grid-template-rows] duration-500 ease-out"
-                    style={{ gridTemplateRows: on ? "1fr" : "0fr" }}
-                  >
-                    <div className="min-h-0">
-                      <div className="flex gap-5 pl-13 pt-5">
-                        <img
-                          src={serviceImage[s.slug]}
-                          alt={serviceAlt[s.slug] ?? s.title}
-                          width={900}
-                          height={1350}
-                          loading="lazy"
-                          className="h-24 w-32 shrink-0 object-cover saturate-[0.6] lg:hidden"
-                        />
-                        <p className="max-w-md text-sm leading-relaxed text-onink-muted">{s.short}</p>
-                      </div>
-                    </div>
-                  </div>
                 </Link>
-              </div>
-            );
-          })}
-          <Link to="/practice-areas" className="label-micro mt-10 inline-block text-gold link-underline">
-            All practice areas →
-          </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

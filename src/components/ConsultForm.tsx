@@ -1,135 +1,108 @@
-import { useState, type FormEvent } from "react";
-import { advocate, mailHref, services, telHref, whatsappHref } from "@/data/site";
+import { useState } from "react";
+import { advocate, mailHref, telHref } from "@/data/site";
+import { img } from "@/data/images";
 
-type Errors = Partial<Record<"name" | "phone" | "email" | "requirement", string>>;
+export function ConsultForm({ variant = "dark" }: { variant?: "dark" | "light" }) {
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [message, setMessage] = useState("");
 
-const fieldClass =
-  "w-full border-b border-onink/20 bg-transparent pb-3 pt-2 text-onink placeholder:text-onink-muted/50 outline-none transition-colors duration-200 focus:border-gold";
+  const dark = variant === "dark";
+  const label = dark ? "text-ondarkmuted" : "text-inkmuted";
+  const field = dark
+    ? "border-b border-ondark/25 bg-transparent py-3 text-ondark placeholder:text-ondarkmuted/60 focus:border-bronze"
+    : "border-b border-beige bg-transparent py-3 text-ink placeholder:text-inkmuted/60 focus:border-bronze";
 
-export function ConsultForm() {
-  const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const fd = new FormData(e.currentTarget);
-    const get = (k: string) => String(fd.get(k) ?? "").trim();
-    const next: Errors = {};
-    if (!get("name")) next.name = "Please enter your name.";
-    if (!/^[0-9+\-\s]{8,15}$/.test(get("phone"))) next.phone = "Please enter a valid phone number.";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(get("email"))) next.email = "Please enter a valid email address.";
-    if (!get("requirement")) next.requirement = "Please select a requirement.";
-    setErrors(next);
-    if (Object.keys(next).length) return;
-
-    const body = [
-      `Name: ${get("name")}`,
-      `Phone: ${get("phone")}`,
-      `Email: ${get("email")}`,
-      `Business / Organization: ${get("business") || "—"}`,
-      `Requirement: ${get("requirement")}`,
-      "",
-      get("message") || "—",
-    ].join("\n");
-
+    const body = `Name: ${name}\nContact: ${contact}\n\n${message}`;
     window.location.href = `mailto:${advocate.email}?subject=${encodeURIComponent(
-      `Consultation request — ${get("requirement")}`,
+      "Consultation enquiry",
     )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
   };
 
   return (
-    <form onSubmit={onSubmit} noValidate className="grid gap-10 md:grid-cols-2">
-      <Field id="name" label="Name" error={errors.name}>
-        <input id="name" name="name" autoComplete="name" className={fieldClass} placeholder="Full name" />
-      </Field>
-      <Field id="phone" label="Phone" error={errors.phone}>
-        <input id="phone" name="phone" type="tel" autoComplete="tel" className={fieldClass} placeholder="Mobile number" />
-      </Field>
-      <Field id="email" label="Email" error={errors.email}>
-        <input id="email" name="email" type="email" autoComplete="email" className={fieldClass} placeholder="you@company.com" />
-      </Field>
-      <Field id="business" label="Business / Organization">
-        <input id="business" name="business" autoComplete="organization" className={fieldClass} placeholder="Optional" />
-      </Field>
-      <Field id="requirement" label="Requirement" error={errors.requirement}>
-        <select id="requirement" name="requirement" defaultValue="" className={`${fieldClass} appearance-none`}>
-          <option value="" disabled className="bg-ink">
-            Select an area
-          </option>
-          {services.map((s) => (
-            <option key={s.slug} value={s.title} className="bg-ink">
-              {s.title}
-            </option>
-          ))}
-          <option value="Other" className="bg-ink">
-            Other
-          </option>
-        </select>
-      </Field>
-      <div className="md:col-span-2">
-        <Field id="message" label="Message">
-          <textarea
-            id="message"
-            name="message"
-            rows={4}
-            className={`${fieldClass} resize-none`}
-            placeholder="Briefly describe your requirement"
+    <form onSubmit={onSubmit} className="max-w-xl">
+      <div className="grid gap-6 sm:grid-cols-2">
+        <label className="block">
+          <span className={`eyebrow ${label}`}>Name</span>
+          <input
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Your name"
+            className={`mt-2 w-full outline-none ${field}`}
           />
-        </Field>
+        </label>
+        <label className="block">
+          <span className={`eyebrow ${label}`}>Phone or email</span>
+          <input
+            required
+            value={contact}
+            onChange={(e) => setContact(e.target.value)}
+            placeholder="How to reach you"
+            className={`mt-2 w-full outline-none ${field}`}
+          />
+        </label>
       </div>
-
-      <div className="md:col-span-2 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-        <button
-          type="submit"
-          data-cursor="consult"
-          className="border border-gold/60 px-8 py-5 label-micro text-gold transition-colors duration-200 hover:bg-gold hover:text-ink active:scale-[0.99] disabled:opacity-40"
-        >
-          Request consultation →
-        </button>
-        <div className="flex flex-wrap gap-6">
-          <a href={telHref} className="label-micro text-onink-muted link-underline hover:text-onink">
-            Call office
-          </a>
-          <a
-            href={whatsappHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="label-micro text-onink-muted link-underline hover:text-onink"
-          >
-            WhatsApp
-          </a>
-          <a href={mailHref} className="label-micro text-onink-muted link-underline hover:text-onink">
-            Email
-          </a>
-        </div>
-      </div>
-
-      <p aria-live="polite" className="md:col-span-2 text-sm text-gold">
-        {sent ? "Your email client has been opened with the details. Send it to complete the request." : ""}
-      </p>
+      <label className="mt-6 block">
+        <span className={`eyebrow ${label}`}>What do you need help with?</span>
+        <textarea
+          required
+          rows={3}
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          placeholder="Briefly describe your requirement"
+          className={`mt-2 w-full resize-none outline-none ${field}`}
+        />
+      </label>
+      <button
+        type="submit"
+        className={`mt-9 rounded-[3px] px-8 py-4 text-sm transition-colors duration-200 ${
+          dark ? "bg-cream text-espresso hover:bg-bronze hover:text-cream" : "bg-espresso text-cream hover:bg-brown"
+        }`}
+      >
+        Send enquiry
+      </button>
     </form>
   );
 }
 
-function Field({
-  id,
-  label,
-  error,
-  children,
-}: {
-  id: string;
-  label: string;
-  error?: string | undefined;
-  children: React.ReactNode;
-}) {
+export function ConsultSection() {
   return (
-    <div>
-      <label htmlFor={id} className="label-micro block text-onink-muted/70">
-        {label}
-      </label>
-      <div className="mt-2">{children}</div>
-      <p className={`mt-2 text-xs ${error ? "text-destructive" : "text-transparent"}`}>{error ?? "·"}</p>
-    </div>
+    <section id="consult" className="relative isolate scroll-mt-24 overflow-hidden bg-espresso">
+      <img
+        src={img.consultation}
+        alt=""
+        aria-hidden="true"
+        width={1408}
+        height={1008}
+        loading="lazy"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25"
+      />
+      <div className="absolute inset-0 -z-10 bg-gradient-to-b from-espresso/95 to-espresso/85" />
+      <div className="mx-auto grid w-full max-w-[1500px] gap-14 px-5 py-24 md:grid-cols-2 md:px-10 md:py-32">
+        <div>
+          <p className="eyebrow text-bronze">09 — Consultation</p>
+          <h2 className="mt-6 display-lg text-ondark">
+            Let&apos;s discuss
+            <br />
+            what you <span className="italic text-bronze">need.</span>
+          </h2>
+          <p className="mt-8 max-w-md text-base leading-relaxed text-ondarkmuted">
+            Share a short outline of your requirement and it will be reviewed before the consultation.
+          </p>
+          <div className="mt-10 space-y-2">
+            <a href={telHref} className="link-quiet block font-display text-3xl text-ondark">
+              {advocate.phone}
+            </a>
+            <a href={mailHref} className="link-quiet block text-sm text-ondarkmuted">
+              {advocate.email}
+            </a>
+          </div>
+        </div>
+        <ConsultForm />
+      </div>
+    </section>
   );
 }

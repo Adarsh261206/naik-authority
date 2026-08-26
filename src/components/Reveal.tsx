@@ -1,17 +1,16 @@
-import { useEffect, useRef, type ElementType, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 export function Reveal({
   children,
   delay = 0,
-  as: Tag = "div",
   className = "",
 }: {
   children: ReactNode;
   delay?: number;
-  as?: ElementType;
   className?: string;
 }) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const [seen, setSeen] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -20,24 +19,24 @@ export function Reveal({
       (entries) => {
         entries.forEach((e) => {
           if (e.isIntersecting) {
-            e.target.classList.add("is-in");
-            io.unobserve(e.target);
+            setSeen(true);
+            io.disconnect();
           }
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
   return (
-    <Tag
-      ref={ref as never}
-      className={`reveal ${className}`}
-      style={{ ["--reveal-delay" as string]: `${delay}ms` }}
+    <div
+      ref={ref}
+      className={`reveal ${seen ? "is-in" : ""} ${className}`}
+      style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
     >
       {children}
-    </Tag>
+    </div>
   );
 }
