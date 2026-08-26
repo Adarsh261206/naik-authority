@@ -6,19 +6,17 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-paper py-24 md:py-32">
-      <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
-        <div className="grid gap-12 lg:grid-cols-[36%_64%] lg:gap-16">
-          <Reveal>
+    <section className="bg-paper section-y">
+      <div className="shell">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+          <Reveal className="col-span-12 lg:col-span-4">
             <p className="eyebrow text-brown">08 — Questions</p>
-            <h2 className="mt-6 display-lg text-ink">
-              Common
-              <br />
-              <span className="italic text-brown">questions.</span>
+            <h2 className="display-lg mt-6 text-ink">
+              Common <span className="italic text-brown">questions.</span>
             </h2>
           </Reveal>
 
-          <div>
+          <div className="col-span-12 lg:col-span-7 lg:col-start-6">
             {faqs.map((f, i) => {
               const isOpen = open === i;
               return (
@@ -29,7 +27,9 @@ export function Faq() {
                     aria-expanded={isOpen}
                     className="flex w-full items-start justify-between gap-6 py-6 text-left"
                   >
-                    <span className="font-display text-2xl font-light text-ink md:text-3xl">{f.q}</span>
+                    <span className="font-display text-2xl font-light text-ink md:text-3xl">
+                      {f.q}
+                    </span>
                     <span
                       className={`mt-2 shrink-0 text-brown transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
                       aria-hidden="true"
@@ -43,7 +43,7 @@ export function Faq() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="max-w-2xl pb-7 text-base leading-relaxed text-inkmuted">{f.a}</p>
+                      <p className="measure pb-7 text-base leading-relaxed text-inkmuted">{f.a}</p>
                     </div>
                   </div>
                 </div>

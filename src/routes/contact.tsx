@@ -1,8 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ConsultForm } from "@/components/ConsultForm";
 import { Reveal } from "@/components/Reveal";
-import { advocate, directionsHref, mailHref, mapEmbedSrc, telHref, whatsappHref } from "@/data/site";
-import { img } from "@/data/images";
+import {
+  advocate,
+  directionsHref,
+  mailHref,
+  mapEmbedSrc,
+  telHref,
+  whatsappHref,
+} from "@/data/site";
+import { focus, img } from "@/data/images";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -14,7 +21,10 @@ export const Route = createFileRoute("/contact")({
           "Contact Advocate Ravindra R. Naik in Thane West for labour law, statutory registration, licensing and business compliance consultation.",
       },
       { property: "og:title", content: "Contact — Ravindra R. Naik, Advocate & Legal Consultant" },
-      { property: "og:description", content: "Request a consultation. Office at Sawarkar Nagar, Thane West." },
+      {
+        property: "og:description",
+        content: "Request a consultation. Office at Sawarkar Nagar, Thane West.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/contact" },
@@ -29,8 +39,8 @@ function Contact() {
   return (
     <>
       <header className="bg-ivory pt-28 md:pt-32">
-        <div className="mx-auto grid w-full max-w-[1500px] items-end gap-10 px-5 py-14 md:px-10 lg:grid-cols-[45%_55%] lg:gap-16">
-          <div>
+        <div className="shell grid grid-cols-12 items-end gap-x-6 gap-y-10 pt-8 pb-16">
+          <div className="col-span-12 lg:col-span-5">
             <p className="eyebrow text-brown">Consultation</p>
             <h1 className="mt-6 display-xl text-ink">
               Let&apos;s
@@ -38,23 +48,24 @@ function Contact() {
               <span className="italic text-brown">talk.</span>
             </h1>
             <p className="body-lead mt-8 max-w-md">
-              Share a short outline of your requirement and it will be reviewed before the consultation.
+              Share a short outline of your requirement and it will be reviewed before the
+              consultation.
             </p>
           </div>
-          <div className="overflow-hidden rounded-tr-[60px]">
+          <div className="col-span-12 overflow-hidden rounded-tr-[60px] lg:col-span-6 lg:col-start-7">
             <img
               src={img.consultation}
-              alt="Documents and notes across a pale oak consultation table"
+              alt="Business owners reviewing compliance documents across a wooden table"
               width={1408}
-              height={1008}
-              className="image-reveal h-[38vh] min-h-[240px] w-full object-cover md:h-[52vh]"
+              height={1104}
+              className={`image-reveal aspect-[4/3] w-full object-cover ${focus.consultation}`}
             />
           </div>
         </div>
       </header>
 
-      <section className="bg-paper py-20 md:py-28">
-        <div className="mx-auto grid w-full max-w-[1500px] gap-14 px-5 md:px-10 lg:grid-cols-2 lg:gap-20">
+      <section className="bg-paper section-y">
+        <div className="shell grid  gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal>
             <ConsultForm variant="light" />
           </Reveal>
@@ -83,7 +94,7 @@ function Contact() {
                   href={whatsappHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-[3px] border border-ink/20 px-6 py-4 text-sm text-ink transition-colors hover:border-ink"
+                  className="btn-secondary"
                 >
                   WhatsApp
                 </a>
@@ -91,7 +102,7 @@ function Contact() {
                   href={directionsHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-[3px] border border-ink/20 px-6 py-4 text-sm text-ink transition-colors hover:border-ink"
+                  className="btn-secondary"
                 >
                   Get Directions
                 </a>

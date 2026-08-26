@@ -11,7 +11,10 @@ export const Route = createFileRoute("/disclaimer")({
           "Disclaimer for the website of Advocate Ravindra R. Naik: the content is informational and is not advertising, solicitation or legal advice.",
       },
       { property: "og:title", content: "Disclaimer — Ravindra R. Naik, Advocate" },
-      { property: "og:description", content: "Website content is informational and not legal advice." },
+      {
+        property: "og:description",
+        content: "Website content is informational and not legal advice.",
+      },
       { property: "og:type", content: "article" },
       { name: "twitter:card", content: "summary" },
       { property: "og:url", content: "/disclaimer" },
@@ -48,13 +51,13 @@ function Disclaimer() {
   return (
     <>
       <header className="bg-ivory pb-16 pt-36 md:pt-48">
-        <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+        <div className="shell ">
           <p className="eyebrow text-brown">Legal — Disclaimer</p>
           <h1 className="mt-6 display-lg text-ink">Disclaimer</h1>
         </div>
       </header>
-      <div className="bg-paper py-20 md:py-28">
-        <div className="mx-auto w-full max-w-3xl px-5 md:px-10">
+      <div className="bg-paper section-y">
+        <div className="mx-auto w-full max-w-3xl px-5">
           {sections.map((s, i) => (
             <section key={s.h} className="border-t border-beige py-10 first:border-t-0 first:pt-0">
               <p className="eyebrow text-brown">{String(i + 1).padStart(2, "0")}</p>

@@ -1,11 +1,11 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { serviceAlt, serviceImage } from "@/data/images";
+import { visualFor } from "@/data/images";
 import { services } from "@/data/site";
 import { Reveal } from "./Reveal";
 
-const R = 200;
-const C = 260;
+const R = 210;
+const C = 280;
 
 export function ComplianceMap() {
   const [active, setActive] = useState(0);
@@ -14,29 +14,30 @@ export function ComplianceMap() {
     return { ...s, x: C + Math.cos(a) * R, y: C + Math.sin(a) * R };
   });
   const current = nodes[active] ?? nodes[0]!;
+  const visual = visualFor(current.slug);
 
   return (
-    <section className="bg-cream py-24 md:py-32">
-      <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+    <section className="section-y bg-cream">
+      <div className="shell">
         <Reveal>
           <p className="eyebrow text-brown">04 — The landscape</p>
-          <h2 className="mt-6 display-lg max-w-2xl text-ink">
+          <h2 className="display-lg mt-6 max-w-2xl text-ink">
             One business,
             <br />
             many <span className="italic text-brown">obligations.</span>
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid items-center gap-14 lg:grid-cols-[1fr_1fr]">
-          <div className="hidden md:block">
+        <div className="mt-16 grid grid-cols-12 items-center gap-x-6 gap-y-12">
+          <div className="col-span-12 hidden md:block lg:col-span-7">
             <svg
-              viewBox="0 0 520 520"
-              className="h-auto w-full max-w-[560px]"
+              viewBox="0 0 560 560"
+              className="h-auto w-full"
               role="img"
               aria-label="Diagram connecting a business to eleven statutory compliance areas"
             >
               <circle cx={C} cy={C} r={R} fill="none" stroke="var(--beige)" />
-              <circle cx={C} cy={C} r={R * 0.6} fill="none" stroke="var(--beige)" />
+              <circle cx={C} cy={C} r={R * 0.55} fill="none" stroke="var(--beige)" />
               {nodes.map((n, i) => (
                 <line
                   key={`l-${n.slug}`}
@@ -50,10 +51,10 @@ export function ComplianceMap() {
               ))}
               <text
                 x={C}
-                y={C + 8}
+                y={C + 10}
                 textAnchor="middle"
                 fill="var(--ink)"
-                style={{ fontFamily: "var(--font-display)", fontSize: 30 }}
+                style={{ fontFamily: "var(--font-display)", fontSize: 38 }}
               >
                 Business
               </text>
@@ -67,7 +68,7 @@ export function ComplianceMap() {
                   onFocus={() => setActive(i)}
                   style={{ cursor: "pointer" }}
                 >
-                  <circle cx={n.x} cy={n.y} r={14} fill="transparent" />
+                  <circle cx={n.x} cy={n.y} r={16} fill="transparent" />
                   <circle
                     cx={n.x}
                     cy={n.y}
@@ -76,11 +77,11 @@ export function ComplianceMap() {
                     style={{ transition: "r 300ms ease-out" }}
                   />
                   <text
-                    x={n.x + (n.x > C + 4 ? 14 : n.x < C - 4 ? -14 : 0)}
-                    y={n.y + (Math.abs(n.x - C) < 5 ? (n.y < C ? -16 : 24) : 4)}
+                    x={n.x + (n.x > C + 4 ? 16 : n.x < C - 4 ? -16 : 0)}
+                    y={n.y + (Math.abs(n.x - C) < 5 ? (n.y < C ? -18 : 26) : 4)}
                     textAnchor={n.x > C + 4 ? "start" : n.x < C - 4 ? "end" : "middle"}
                     fill={i === active ? "var(--brown)" : "var(--ink-muted)"}
-                    style={{ fontSize: 12, fontFamily: "var(--font-sans)" }}
+                    style={{ fontSize: 13, fontFamily: "var(--font-sans)" }}
                   >
                     {n.node}
                   </text>
@@ -89,21 +90,21 @@ export function ComplianceMap() {
             </svg>
           </div>
 
-          <div className="hidden md:block">
+          <div className="col-span-12 hidden md:block lg:col-span-4 lg:col-start-9">
             <div className="overflow-hidden rounded-tl-[40px]">
               <img
-                src={serviceImage[current.slug]}
-                alt={serviceAlt[current.slug] ?? current.title}
-                width={1200}
-                height={800}
+                key={visual.src}
+                src={visual.src}
+                alt={visual.alt}
+                width={1408}
+                height={1104}
                 loading="lazy"
-                className="h-[280px] w-full object-cover transition-opacity duration-500"
-                key={current.slug}
+                className={`aspect-[4/3] w-full object-cover ${visual.focus}`}
               />
             </div>
             <p className="eyebrow mt-8 text-brown">{current.category}</p>
-            <h3 className="mt-4 display-md text-ink">{current.title}</h3>
-            <p className="body-lead mt-5 max-w-md">{current.overview}</p>
+            <h3 className="display-md mt-4 text-ink">{current.title}</h3>
+            <p className="body-lead mt-5">{current.overview}</p>
             <Link
               to="/practice-areas/$slug"
               params={{ slug: current.slug }}
@@ -113,12 +114,12 @@ export function ComplianceMap() {
             </Link>
           </div>
 
-          {/* Mobile list */}
-          <ol className="md:hidden">
+          {/* Mobile: clean vertical sequence */}
+          <ol className="col-span-12 md:hidden">
             {services.map((s) => (
-              <li key={s.slug} className="border-b border-beige py-5">
+              <li key={s.slug} className="border-b border-beige py-6 first:border-t first:pt-6">
                 <p className="text-xs tracking-[0.16em] text-brown">{s.index}</p>
-                <p className="mt-1 font-display text-2xl text-ink">{s.title}</p>
+                <p className="mt-2 font-display text-2xl text-ink">{s.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-inkmuted">{s.short}</p>
               </li>
             ))}

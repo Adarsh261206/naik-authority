@@ -22,7 +22,7 @@ export function ConsultForm({ variant = "dark" }: { variant?: "dark" | "light" }
   };
 
   return (
-    <form onSubmit={onSubmit} className="max-w-xl">
+    <form onSubmit={onSubmit} className="w-full">
       <div className="grid gap-6 sm:grid-cols-2">
         <label className="block">
           <span className={`eyebrow ${label}`}>Name</span>
@@ -56,12 +56,7 @@ export function ConsultForm({ variant = "dark" }: { variant?: "dark" | "light" }
           className={`mt-2 w-full resize-none outline-none ${field}`}
         />
       </label>
-      <button
-        type="submit"
-        className={`mt-9 rounded-[3px] px-8 py-4 text-sm transition-colors duration-200 ${
-          dark ? "bg-cream text-espresso hover:bg-bronze hover:text-cream" : "bg-espresso text-cream hover:bg-brown"
-        }`}
-      >
+      <button type="submit" className={`mt-9 ${dark ? "btn-on-dark" : "btn-primary"}`}>
         Send enquiry
       </button>
     </form>
@@ -76,21 +71,22 @@ export function ConsultSection() {
         alt=""
         aria-hidden="true"
         width={1408}
-        height={1008}
+        height={1104}
         loading="lazy"
         className="absolute inset-0 -z-10 h-full w-full object-cover opacity-25"
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-espresso/95 to-espresso/85" />
-      <div className="mx-auto grid w-full max-w-[1500px] gap-14 px-5 py-24 md:grid-cols-2 md:px-10 md:py-32">
-        <div>
+      <div className="shell grid grid-cols-12 gap-x-6 gap-y-12 py-24 md:py-32">
+        <div className="col-span-12 lg:col-span-5">
           <p className="eyebrow text-bronze">09 — Consultation</p>
-          <h2 className="mt-6 display-lg text-ondark">
+          <h2 className="display-lg mt-6 text-ondark">
             Let&apos;s discuss
             <br />
             what you <span className="italic text-bronze">need.</span>
           </h2>
-          <p className="mt-8 max-w-md text-base leading-relaxed text-ondarkmuted">
-            Share a short outline of your requirement and it will be reviewed before the consultation.
+          <p className="measure mt-8 text-base leading-relaxed text-ondarkmuted">
+            Share a short outline of your requirement and it will be reviewed before the
+            consultation.
           </p>
           <div className="mt-10 space-y-2">
             <a href={telHref} className="link-quiet block font-display text-3xl text-ondark">
@@ -101,7 +97,9 @@ export function ConsultSection() {
             </a>
           </div>
         </div>
-        <ConsultForm />
+        <div className="col-span-12 lg:col-span-6 lg:col-start-7">
+          <ConsultForm />
+        </div>
       </div>
     </section>
   );

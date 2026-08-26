@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { disclaimerShort, getService, telHref, whatsappHref } from "@/data/site";
-import { serviceAlt, serviceImage } from "@/data/images";
+import { visualFor } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/$slug")({
   loader: ({ params }) => {
@@ -37,9 +37,12 @@ function ServicePage() {
   return (
     <>
       <header className="bg-ivory pt-28 md:pt-32">
-        <div className="mx-auto grid w-full max-w-[1500px] items-end gap-10 px-5 py-14 md:px-10 lg:grid-cols-[48%_52%] lg:gap-16">
-          <div>
-            <Link to="/practice-areas" className="link-quiet text-xs tracking-[0.16em] uppercase text-inkmuted">
+        <div className="shell grid grid-cols-12 items-end gap-x-6 gap-y-10 pt-8 pb-16">
+          <div className="col-span-12 lg:col-span-5">
+            <Link
+              to="/practice-areas"
+              className="link-quiet text-xs tracking-[0.16em] uppercase text-inkmuted"
+            >
               ← Practice areas
             </Link>
             <p className="eyebrow mt-8 text-brown">
@@ -48,20 +51,20 @@ function ServicePage() {
             <h1 className="mt-5 display-lg text-ink">{service.title}</h1>
             <p className="body-lead mt-7 max-w-md">{service.short}</p>
           </div>
-          <div className="overflow-hidden rounded-tr-[60px]">
+          <div className="col-span-12 overflow-hidden rounded-tr-[60px] lg:col-span-6 lg:col-start-7">
             <img
-              src={serviceImage[service.slug]}
-              alt={serviceAlt[service.slug] ?? service.title}
+              src={visualFor(service.slug).src}
+              alt={visualFor(service.slug).alt}
               width={1408}
-              height={1008}
-              className="image-reveal h-[36vh] min-h-[230px] w-full object-cover md:h-[50vh]"
+              height={1104}
+              className={`image-reveal aspect-[4/3] w-full object-cover ${visualFor(service.slug).focus}`}
             />
           </div>
         </div>
       </header>
 
-      <section className="bg-paper py-20 md:py-28">
-        <div className="mx-auto grid w-full max-w-[1500px] gap-14 px-5 md:px-10 lg:grid-cols-[58%_42%] lg:gap-20">
+      <section className="bg-paper section-y">
+        <div className="shell grid  gap-14 lg:grid-cols-[58%_42%] lg:gap-20">
           <div>
             <Reveal>
               <p className="eyebrow text-brown">Overview</p>
@@ -72,7 +75,10 @@ function ServicePage() {
                 <p className="eyebrow text-brown">Context</p>
                 <ul className="mt-5 space-y-5">
                   {service.context.map((c) => (
-                    <li key={c} className="border-t border-beige pt-5 text-base leading-relaxed text-inkmuted">
+                    <li
+                      key={c}
+                      className="border-t border-beige pt-5 text-base leading-relaxed text-inkmuted"
+                    >
                       {c}
                     </li>
                   ))}
@@ -84,7 +90,10 @@ function ServicePage() {
                 <p className="eyebrow text-brown">Commonly required</p>
                 <ul className="mt-5 grid gap-4 sm:grid-cols-2">
                   {service.requirements.map((r, i) => (
-                    <li key={r} className="flex gap-4 border-t border-beige pt-4 text-sm leading-relaxed text-inkmuted">
+                    <li
+                      key={r}
+                      className="flex gap-4 border-t border-beige pt-4 text-sm leading-relaxed text-inkmuted"
+                    >
                       <span className="text-xs text-brown">0{i + 1}</span>
                       {r}
                     </li>
@@ -92,7 +101,9 @@ function ServicePage() {
                 </ul>
               </div>
             </Reveal>
-            <p className="mt-14 max-w-2xl text-xs leading-relaxed text-inkmuted/80">{disclaimerShort}</p>
+            <p className="mt-14 max-w-2xl text-xs leading-relaxed text-inkmuted/80">
+              {disclaimerShort}
+            </p>
           </div>
 
           <div>
@@ -103,12 +114,12 @@ function ServicePage() {
                   Discuss this requirement.
                 </p>
                 <div className="mt-8 grid gap-3">
-                  <Link to="/contact" className="rounded-[3px] bg-cream px-6 py-4 text-center text-sm text-espresso">
+                  <Link to="/contact" className="btn-on-dark w-full">
                     Book a Consultation
                   </Link>
                   <a
                     href={telHref}
-                    className="rounded-[3px] border border-ondark/25 px-6 py-4 text-center text-sm text-ondark"
+                    className="inline-flex h-14 items-center justify-center rounded-[3px] border border-ondark/25 px-8 text-sm text-ondark transition-colors hover:border-bronze hover:text-bronze"
                   >
                     Call
                   </a>
@@ -116,7 +127,7 @@ function ServicePage() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-[3px] border border-ondark/25 px-6 py-4 text-center text-sm text-ondark"
+                    className="inline-flex h-14 items-center justify-center rounded-[3px] border border-ondark/25 px-8 text-sm text-ondark transition-colors hover:border-bronze hover:text-bronze"
                   >
                     WhatsApp
                   </a>
@@ -136,8 +147,8 @@ function ServicePage() {
                       className="group flex items-center gap-5 border-b border-beige py-5"
                     >
                       <img
-                        src={serviceImage[r!.slug]}
-                        alt={serviceAlt[r!.slug] ?? r!.title}
+                        src={visualFor(r!.slug).src}
+                        alt={visualFor(r!.slug).alt}
                         width={400}
                         height={300}
                         loading="lazy"

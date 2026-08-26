@@ -23,7 +23,7 @@ function NotFoundComponent() {
       <div className="max-w-md text-center">
         <p className="font-display text-8xl font-light text-ink">404</p>
         <p className="mt-6 text-sm text-inkmuted">This page could not be found</p>
-        <Link to="/" className="mt-8 inline-block rounded-[3px] bg-espresso px-6 py-4 text-sm text-cream">
+        <Link to="/" className="btn-primary mt-8">
           Return home →
         </Link>
       </div>
@@ -49,11 +49,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
               router.invalidate();
               reset();
             }}
-            className="rounded-[3px] bg-espresso px-6 py-4 text-sm text-cream"
+            className="btn-primary"
           >
             Try again
           </button>
-          <a href="/" className="rounded-[3px] border border-ink/20 px-6 py-4 text-sm text-ink">
+          <a href="/" className="btn-secondary">
             Go home
           </a>
         </div>
