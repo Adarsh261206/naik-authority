@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
 import { services } from "@/data/site";
+import { img, serviceAlt, serviceImage } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/")({
   head: () => ({
@@ -68,9 +69,19 @@ function PracticeAreas() {
                         data-cursor="view"
                         className="group flex h-full flex-col border-b border-foreground/12 py-10 pr-6 transition-colors duration-300 hover:bg-foreground/[0.03] md:pl-8 md:[&:nth-child(odd)]:border-r"
                       >
-                        <span className="label-micro text-muted-foreground transition-colors group-hover:text-golddeep">
-                          {s.index}
-                        </span>
+                        <div className="relative mb-6 h-44 w-full overflow-hidden">
+                          <img
+                            src={serviceImage[s.slug]}
+                            alt={serviceAlt[s.slug] ?? s.title}
+                            width={900}
+                            height={1350}
+                            loading="lazy"
+                            className="h-full w-full object-cover saturate-[0.55] transition-all duration-700 ease-out group-hover:scale-[1.04] group-hover:saturate-100"
+                          />
+                          <span className="label-micro absolute bottom-3 left-3 bg-ink/60 px-2.5 py-1 text-onink/90 backdrop-blur-sm">
+                            {s.index}
+                          </span>
+                        </div>
                         <h3 className="mt-5 font-display text-3xl font-light transition-transform duration-500 group-hover:translate-x-2">
                           {s.title}
                         </h3>
