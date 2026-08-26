@@ -29,7 +29,11 @@ export function SiteFooter() {
             <ul className="mt-6 space-y-3">
               {nav.map((i) => (
                 <li key={i.label}>
-                  <Link to={i.to} className="link-underline text-sm text-onink-muted hover:text-onink">
+                  <Link
+                    to={i.to}
+                    {...("hash" in i ? { hash: i.hash } : {})}
+                    className="link-underline text-sm text-onink-muted hover:text-onink"
+                  >
                     {i.label}
                   </Link>
                 </li>

@@ -49,11 +49,13 @@ export function SiteNav() {
 
         <nav aria-label="Primary" className="hidden items-center gap-9 lg:flex">
           {nav.map((item) => {
-            const active = pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to));
+            const active =
+              !("hash" in item) && (pathname === item.to || (item.to !== "/" && pathname.startsWith(item.to)));
             return (
               <Link
                 key={item.label}
                 to={item.to}
+                {...("hash" in item ? { hash: item.hash } : {})}
                 className={`label-micro link-underline pb-1 transition-colors duration-200 ${
                   active ? "text-gold" : "text-onink-muted hover:text-onink"
                 }`}
@@ -100,6 +102,7 @@ export function SiteNav() {
             <Link
               key={item.label}
               to={item.to}
+              {...("hash" in item ? { hash: item.hash } : {})}
               className="border-b border-onink/10 py-6 font-display text-4xl font-light text-onink"
             >
               <span className="label-micro mr-4 align-middle text-gold-dim">0{i + 1}</span>

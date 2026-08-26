@@ -33,7 +33,7 @@ export const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(a
 
 export const nav = [
   { label: "Practice", to: "/practice-areas" },
-  { label: "Approach", to: "/#approach" },
+  { label: "Approach", to: "/", hash: "approach" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;

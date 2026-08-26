@@ -12,7 +12,7 @@ export function ComplianceMap() {
     const angle = (i / services.length) * Math.PI * 2 - Math.PI / 2;
     return { ...s, x: CX + Math.cos(angle) * R, y: CY + Math.sin(angle) * R };
   });
-  const current = nodes[active];
+  const current = nodes[active] ?? nodes[0]!;
 
   return (
     <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
