@@ -89,7 +89,7 @@ export function ComplianceMap() {
         <Link
           to="/practice-areas/$slug"
           params={{ slug: current.slug }}
-          className="label-micro mt-8 inline-block text-gold link-underline"
+          className="label-micro mt-8 inline-block text-foreground link-underline"
         >
           Explore this area →
         </Link>
