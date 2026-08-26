@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useRouterState,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -11,24 +12,23 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { Cursor } from "@/components/Cursor";
+import { Preloader } from "@/components/Preloader";
+import { FloatingActions } from "@/components/FloatingActions";
+import { addressOneLine, advocate } from "@/data/site";
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
-        <div className="mt-6">
-          <Link
-            to="/"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Go home
-          </Link>
-        </div>
+    <div className="grain flex min-h-screen items-center justify-center bg-ink px-6">
+      <div className="relative z-10 max-w-md text-center">
+        <p className="font-display text-8xl font-light text-onink">404</p>
+        <div className="mx-auto mt-6 h-px w-16 bg-gold/60" />
+        <p className="label-micro mt-6 text-onink-muted">This page could not be found</p>
+        <Link to="/" className="label-micro mt-8 inline-block border border-gold/50 px-6 py-4 text-gold">
+          Return home →
+        </Link>
       </div>
     </div>
   );
@@ -42,28 +42,22 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
-        <div className="mt-6 flex flex-wrap justify-center gap-2">
+    <div className="grain flex min-h-screen items-center justify-center bg-ink px-6">
+      <div className="relative z-10 max-w-md text-center">
+        <h1 className="font-display text-4xl font-light text-onink">This page didn't load</h1>
+        <div className="mx-auto mt-6 h-px w-16 bg-gold/60" />
+        <p className="mt-6 text-sm text-onink-muted">Please try again or return to the homepage.</p>
+        <div className="mt-8 flex justify-center gap-4">
           <button
             onClick={() => {
               router.invalidate();
               reset();
             }}
-            className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+            className="label-micro border border-gold/50 px-6 py-4 text-gold"
           >
             Try again
           </button>
-          <a
-            href="/"
-            className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-          >
+          <a href="/" className="label-micro border border-onink/20 px-6 py-4 text-onink">
             Go home
           </a>
         </div>
@@ -77,21 +71,49 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: `${advocate.name} | Advocate & Legal Consultant | Thane` },
+      {
+        name: "description",
+        content:
+          "Advocate & Legal Consultant in Thane assisting businesses with labour law, statutory registrations, licences and compliance requirements.",
+      },
+      { name: "author", content: advocate.name },
+      { name: "theme-color", content: "#0A0A0A" },
+      { property: "og:site_name", content: advocate.name },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: appCss,
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Inter:wght@300;400;500&display=swap",
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LegalService",
+          name: advocate.name,
+          description: `${advocate.title} assisting businesses with labour law, statutory registrations, licences and compliance requirements.`,
+          telephone: advocate.phoneIntl,
+          email: advocate.email,
+          areaServed: "Thane, Maharashtra, India",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: `${advocate.office.line1}, ${advocate.office.line2}, ${advocate.office.line3}`,
+            addressLocality: advocate.office.city,
+            postalCode: advocate.office.pincode,
+            addressRegion: advocate.office.state,
+            addressCountry: "IN",
+          },
+        }),
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -116,11 +138,20 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Preloader />
+      <Cursor />
+      <SiteNav />
+      <main key={pathname} className="page-in min-h-screen">
+        {/* Required: nested routes render here. */}
+        <Outlet />
+      </main>
+      <SiteFooter />
+      <FloatingActions />
+      <span className="sr-only">{addressOneLine}</span>
     </QueryClientProvider>
   );
 }
