@@ -3,32 +3,29 @@ import { img } from "@/data/images";
 
 export function CinematicStatement() {
   return (
-    <section className="relative isolate flex min-h-[92svh] items-end overflow-hidden bg-ink">
+    <section className="relative isolate overflow-hidden bg-espresso">
       <img
         src={img.statement}
-        alt="Dark law office at night with case files under a single lamp"
-        width={1920}
-        height={1088}
+        alt="Warm golden-hour light across a legal office desk and bookshelves"
+        width={1600}
+        height={1008}
         loading="lazy"
-        className="absolute inset-0 -z-10 h-full w-full object-cover saturate-[0.6]"
+        className="absolute inset-0 -z-10 h-full w-full object-cover opacity-70"
       />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-ink via-ink/70 to-ink/30" />
-      <div className="mx-auto w-full max-w-[1600px] px-5 pb-20 md:px-10 md:pb-28">
-        <h2 className="font-display text-[clamp(2.8rem,7vw,7.5rem)] font-light leading-[0.9] text-onink">
-          When
-          <br />
-          compliance
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-espresso via-espresso/70 to-espresso/20" />
+      <div className="mx-auto w-full max-w-[1500px] px-5 py-28 md:px-10 md:py-40">
+        <h2 className="display-lg max-w-3xl text-ondark">
+          When compliance
           <br />
           gets complex,
           <br />
-          <span className="italic text-gold-dim">clarity matters.</span>
+          <span className="italic text-bronze">clarity matters.</span>
         </h2>
         <Link
           to="/contact"
-          data-cursor="consult"
-          className="label-micro mt-12 inline-block border-b border-gold/60 pb-2 text-gold"
+          className="mt-10 inline-block rounded-[3px] bg-cream px-8 py-4 text-sm text-espresso transition-colors duration-200 hover:bg-bronze hover:text-cream"
         >
-          Discuss your requirement →
+          Discuss your requirement
         </Link>
       </div>
     </section>

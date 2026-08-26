@@ -18,6 +18,8 @@ export const Route = createFileRoute("/about")({
         property: "og:description",
         content: "Advocate & Legal Consultant, Thane West. Statutory registrations, licences and compliance.",
       },
+      { property: "og:type", content: "profile" },
+      { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "/about" },
     ],
     links: [{ rel: "canonical", href: "/about" }],
@@ -28,140 +30,107 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <>
-      <header className="grain relative isolate overflow-hidden bg-ink pb-28 pt-40 text-onink md:pt-56">
-        <img
-          src={img.aboutChamber}
-          alt="Advocate's chamber with law books and a warm lamp"
-          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[42%] object-cover saturate-[0.55] md:block"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/92 to-ink/40" aria-hidden="true" />
-        <div className="grid-lines pointer-events-none absolute inset-0 opacity-30" aria-hidden="true" />
-        <div
-          className="pointer-events-none absolute right-[8%] top-[22%] hidden h-[60%] w-[22%] border border-onink/12 lg:block"
-          aria-hidden="true"
-        >
-          <div className="absolute inset-5 border border-gold/15" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display text-[8rem] leading-none text-onink/[0.08]">RN</span>
-          </div>
-        </div>
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <p className="label-micro text-gold-dim">The advocate / 01</p>
-          <h1 className="mt-8 display-xl text-onink">
-            Ravindra
-            <br />
-            R. Naik
-          </h1>
-          <div className="mt-12 flex items-center gap-6">
-            <Monogram size={64} />
+      <header className="bg-ivory pt-28 md:pt-32">
+        <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+          <div className="grid items-end gap-10 py-14 lg:grid-cols-[45%_55%] lg:gap-16">
             <div>
-              <p className="label-micro text-onink">{advocate.qualification}</p>
-              <p className="label-micro mt-2 text-onink-muted">{advocate.title}</p>
+              <p className="eyebrow text-brown">The advocate</p>
+              <h1 className="mt-6 display-xl text-ink">
+                Ravindra
+                <br />
+                R. <span className="italic text-brown">Naik</span>
+              </h1>
+              <p className="mt-8 text-base text-inkmuted">
+                {advocate.qualification} · {advocate.title}
+              </p>
+            </div>
+            <div className="overflow-hidden rounded-tl-[60px]">
+              <img
+                src={img.about}
+                alt="Advocate's chamber with a pale oak desk, cane chair and bundled case files"
+                width={1600}
+                height={1104}
+                className="image-reveal h-[42vh] min-h-[280px] w-full object-cover md:h-[60vh]"
+              />
             </div>
           </div>
         </div>
       </header>
 
-      <section className="bg-ivory py-24 md:py-36">
-        <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <div className="grid gap-16 lg:grid-cols-[3fr_2fr]">
-            <Reveal>
-              <h2 className="display-md">
-                A practice focused on
-                <br />
-                statutory clarity.
-              </h2>
-              <div className="mt-10 max-w-2xl border-l border-gold pl-8">
-                <p className="text-lg leading-relaxed">
-                  The practice assists businesses and establishments with labour law compliances, statutory
-                  registrations and licensing requirements — from identifying what applies, to preparing the
-                  documentation, to proceeding with the concerned authority.
-                </p>
-                <p className="mt-8 text-sm leading-relaxed text-muted-foreground">
-                  Work is carried out on the facts of each matter: the nature of the activity, the premises,
-                  the persons employed and the authority concerned. The intent is a process that a business
-                  owner can follow and understand at every stage.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div className="border-t border-foreground/15 pt-6">
-                <p className="label-micro text-muted-foreground">Professional details</p>
-                <dl className="mt-8 space-y-6 text-sm">
-                  <Row k="Name" v={advocate.name} />
-                  <Row k="Qualification" v={advocate.qualification} />
-                  <Row k="Designation" v={advocate.title} />
-                  <Row k="Area served" v="Thane & Mumbai Metropolitan Region" />
-                </dl>
-                <div className="mt-10 space-y-3">
-                  <a href={telHref} className="block label-micro link-underline">
-                    {advocate.phone}
-                  </a>
-                  <a href={mailHref} className="block break-all label-micro link-underline">
-                    {advocate.email}
-                  </a>
+      <section className="bg-paper py-20 md:py-28">
+        <div className="mx-auto grid w-full max-w-[1500px] gap-12 px-5 md:px-10 lg:grid-cols-[58%_42%] lg:gap-16">
+          <Reveal>
+            <p className="body-lead">
+              Practising from Thane West, the office assists businesses with labour law compliances,
+              statutory registrations and licensing requirements.
+            </p>
+            <p className="body-lead mt-5">
+              Each engagement begins with understanding the activity, the premises and the people
+              employed, since these determine which statutes apply and what documentation is required.
+            </p>
+            <p className="body-lead mt-5">
+              The intention is simple: clear advice, organised documentation and a process that is easy
+              to follow.
+            </p>
+          </Reveal>
+          <Reveal delay={120}>
+            <div className="border-t border-beige pt-8">
+              <Monogram size={52} />
+              <p className="eyebrow mt-6 text-brown">Professional details</p>
+              <dl className="mt-5 space-y-4 text-sm">
+                <div>
+                  <dt className="text-inkmuted">Name</dt>
+                  <dd className="font-display text-2xl text-ink">{advocate.name}</dd>
                 </div>
+                <div>
+                  <dt className="text-inkmuted">Qualification</dt>
+                  <dd className="text-ink">{advocate.qualification}</dd>
+                </div>
+                <div>
+                  <dt className="text-inkmuted">Designation</dt>
+                  <dd className="text-ink">{advocate.title}</dd>
+                </div>
+                <div>
+                  <dt className="text-inkmuted">Location</dt>
+                  <dd className="text-ink">{advocate.office.city}</dd>
+                </div>
+              </dl>
+              <div className="mt-7 space-y-1">
+                <a href={telHref} className="link-quiet block text-sm text-ink">
+                  {advocate.phone}
+                </a>
+                <a href={mailHref} className="link-quiet block break-all text-sm text-ink">
+                  {advocate.email}
+                </a>
               </div>
-            </Reveal>
-          </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <section className="grain relative bg-ink py-24 text-onink md:py-32">
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <p className="label-micro text-gold-dim">Areas of assistance / 02</p>
-          <div className="mt-12 grid gap-x-12 gap-y-1 md:grid-cols-2 lg:grid-cols-3">
+      <section className="bg-cream py-20 md:py-28">
+        <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+          <p className="eyebrow text-brown">Areas of assistance</p>
+          <div className="mt-10 grid gap-x-16 md:grid-cols-2">
             {services.map((s) => (
               <Link
                 key={s.slug}
                 to="/practice-areas/$slug"
                 params={{ slug: s.slug }}
-                className="group flex items-baseline gap-4 border-b border-onink/12 py-5"
+                className="group flex items-baseline gap-5 border-b border-beige py-5"
               >
-                <span className="label-micro text-onink-muted/50 group-hover:text-gold">{s.index}</span>
-                <span className="font-display text-xl text-onink transition-transform duration-300 group-hover:translate-x-1">
+                <span className="text-xs tracking-[0.16em] text-inkmuted/70">{s.index}</span>
+                <span className="font-display text-2xl font-light text-ink transition-colors group-hover:text-brown">
                   {s.title}
                 </span>
               </Link>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="bg-sand py-24 md:py-32">
-        <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <div className="flex flex-col justify-between gap-10 md:flex-row md:items-end">
-            <div>
-              <p className="label-micro text-muted-foreground">Office / 03</p>
-              <address className="mt-8 space-y-1 border-l border-gold pl-6 text-sm not-italic leading-relaxed">
-                <p>{advocate.office.line1}</p>
-                <p>{advocate.office.line2}</p>
-                <p>{advocate.office.line3}</p>
-                <p>
-                  {advocate.office.city} — {advocate.office.pincode}
-                </p>
-              </address>
-            </div>
-            <Link
-              to="/contact"
-              data-cursor="consult"
-              className="self-start border border-foreground px-7 py-5 label-micro transition-colors duration-200 hover:bg-foreground hover:text-ivory"
-            >
-              Request consultation →
-            </Link>
-          </div>
+          <Link to="/contact" className="mt-12 inline-block rounded-[3px] bg-espresso px-8 py-4 text-sm text-cream">
+            Book a Consultation
+          </Link>
         </div>
       </section>
     </>
-  );
-}
-
-function Row({ k, v }: { k: string; v: string }) {
-  return (
-    <div className="flex justify-between gap-6 border-b border-foreground/12 pb-4">
-      <dt className="label-micro text-muted-foreground">{k}</dt>
-      <dd className="text-right">{v}</dd>
-    </div>
   );
 }

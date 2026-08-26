@@ -1,48 +1,57 @@
 import { useState } from "react";
-import { disclaimerShort, faqs } from "@/data/site";
+import { faqs } from "@/data/site";
+import { Reveal } from "./Reveal";
 
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <div>
-      <div className="border-t border-foreground/12">
-        {faqs.map((f, i) => {
-          const isOpen = open === i;
-          return (
-            <div key={f.q} className="border-b border-foreground/12">
-              <button
-                type="button"
-                onClick={() => setOpen(isOpen ? null : i)}
-                aria-expanded={isOpen}
-                className="flex w-full items-start gap-6 py-7 text-left transition-colors duration-200 hover:text-foreground/70"
-              >
-                <span className={`label-micro mt-2 shrink-0 ${isOpen ? "text-golddeep" : "text-muted-foreground"}`}>
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="flex-1 font-display text-2xl font-light md:text-3xl">{f.q}</span>
-                <span
-                  className={`mt-2 shrink-0 text-golddeep transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
-                  aria-hidden="true"
-                >
-                  +
-                </span>
-              </button>
-              <div
-                className="grid overflow-hidden transition-[grid-template-rows] duration-500 ease-out"
-                style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
-              >
-                <div className="min-h-0">
-                  <p className="max-w-3xl pb-8 pl-[3.4rem] text-sm leading-relaxed text-muted-foreground">
-                    {f.a}
-                  </p>
+    <section className="bg-paper py-24 md:py-32">
+      <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+        <div className="grid gap-12 lg:grid-cols-[36%_64%] lg:gap-16">
+          <Reveal>
+            <p className="eyebrow text-brown">08 — Questions</p>
+            <h2 className="mt-6 display-lg text-ink">
+              Common
+              <br />
+              <span className="italic text-brown">questions.</span>
+            </h2>
+          </Reveal>
+
+          <div>
+            {faqs.map((f, i) => {
+              const isOpen = open === i;
+              return (
+                <div key={f.q} className="border-b border-beige first:border-t">
+                  <button
+                    type="button"
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    aria-expanded={isOpen}
+                    className="flex w-full items-start justify-between gap-6 py-6 text-left"
+                  >
+                    <span className="font-display text-2xl font-light text-ink md:text-3xl">{f.q}</span>
+                    <span
+                      className={`mt-2 shrink-0 text-brown transition-transform duration-300 ${isOpen ? "rotate-45" : ""}`}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                  <div
+                    className={`grid transition-all duration-500 ease-out ${
+                      isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <p className="max-w-2xl pb-7 text-base leading-relaxed text-inkmuted">{f.a}</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
+              );
+            })}
+          </div>
+        </div>
       </div>
-      <p className="mt-8 max-w-2xl text-xs leading-relaxed text-muted-foreground">{disclaimerShort}</p>
-    </div>
+    </section>
   );
 }

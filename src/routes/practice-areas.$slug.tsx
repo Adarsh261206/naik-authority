@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Reveal } from "@/components/Reveal";
-import { disclaimerShort, getService, services, telHref, whatsappHref } from "@/data/site";
+import { disclaimerShort, getService, telHref, whatsappHref } from "@/data/site";
 import { serviceAlt, serviceImage } from "@/data/images";
 
 export const Route = createFileRoute("/practice-areas/$slug")({
@@ -21,6 +21,7 @@ export const Route = createFileRoute("/practice-areas/$slug")({
         { property: "og:title", content: `${s.title} — Ravindra R. Naik, Advocate` },
         { property: "og:description", content: s.short },
         { property: "og:type", content: "article" },
+        { name: "twitter:card", content: "summary_large_image" },
         { property: "og:url", content: `/practice-areas/${params.slug}` },
       ],
       links: [{ rel: "canonical", href: `/practice-areas/${params.slug}` }],
@@ -35,120 +36,124 @@ function ServicePage() {
 
   return (
     <>
-      <header className="grain relative isolate overflow-hidden bg-ink pb-24 pt-40 text-onink md:pt-52">
-        <img
-          src={serviceImage[service.slug]}
-          alt={serviceAlt[service.slug] ?? service.title}
-          width={900}
-          height={1350}
-          className="absolute inset-y-0 right-0 -z-10 hidden h-full w-[46%] object-cover saturate-[0.55] md:block"
-        />
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-ink via-ink/92 to-ink/40" aria-hidden="true" />
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <Link to="/practice-areas" className="label-micro text-onink-muted link-underline">
-            ← Practice areas
-          </Link>
-          <p className="label-micro mt-10 text-gold-dim">
-            {service.index} / {service.category}
-          </p>
-          <h1 className="mt-8 display-lg max-w-[60%] text-onink">{service.title}</h1>
-          <p className="mt-10 max-w-xl border-l border-gold/60 pl-6 text-base leading-relaxed text-onink-muted">
-            {service.short}
-          </p>
+      <header className="bg-ivory pt-28 md:pt-32">
+        <div className="mx-auto grid w-full max-w-[1500px] items-end gap-10 px-5 py-14 md:px-10 lg:grid-cols-[48%_52%] lg:gap-16">
+          <div>
+            <Link to="/practice-areas" className="link-quiet text-xs tracking-[0.16em] uppercase text-inkmuted">
+              ← Practice areas
+            </Link>
+            <p className="eyebrow mt-8 text-brown">
+              {service.index} — {service.category}
+            </p>
+            <h1 className="mt-5 display-lg text-ink">{service.title}</h1>
+            <p className="body-lead mt-7 max-w-md">{service.short}</p>
+          </div>
+          <div className="overflow-hidden rounded-tr-[60px]">
+            <img
+              src={serviceImage[service.slug]}
+              alt={serviceAlt[service.slug] ?? service.title}
+              width={1408}
+              height={1008}
+              className="image-reveal h-[36vh] min-h-[230px] w-full object-cover md:h-[50vh]"
+            />
+          </div>
         </div>
       </header>
 
-
-      <div className="bg-ivory py-24 md:py-32">
-        <div className="mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <div className="grid gap-16 lg:grid-cols-[1.3fr_1fr]">
-            <div>
-              <Reveal>
-                <h2 className="display-md">Overview</h2>
-                <p className="mt-8 max-w-2xl text-lg leading-relaxed">{service.overview}</p>
-              </Reveal>
-              <Reveal delay={100}>
-                <h2 className="mt-20 display-md">Business context</h2>
-                <ul className="mt-8 max-w-2xl space-y-6">
-                  {service.context.map((c, i) => (
-                    <li key={c} className="flex gap-6 border-t border-foreground/12 pt-6">
-                      <span className="label-micro shrink-0 text-golddeep">0{i + 1}</span>
-                      <p className="text-sm leading-relaxed text-muted-foreground">{c}</p>
+      <section className="bg-paper py-20 md:py-28">
+        <div className="mx-auto grid w-full max-w-[1500px] gap-14 px-5 md:px-10 lg:grid-cols-[58%_42%] lg:gap-20">
+          <div>
+            <Reveal>
+              <p className="eyebrow text-brown">Overview</p>
+              <p className="body-lead mt-5">{service.overview}</p>
+            </Reveal>
+            <Reveal delay={100}>
+              <div className="mt-14">
+                <p className="eyebrow text-brown">Context</p>
+                <ul className="mt-5 space-y-5">
+                  {service.context.map((c) => (
+                    <li key={c} className="border-t border-beige pt-5 text-base leading-relaxed text-inkmuted">
+                      {c}
                     </li>
                   ))}
                 </ul>
-              </Reveal>
-              <Reveal delay={150}>
-                <h2 className="mt-20 display-md">Commonly relevant documents</h2>
-                <ul className="mt-8 max-w-2xl">
-                  {service.requirements.map((r) => (
-                    <li key={r} className="border-b border-foreground/12 py-5 text-sm text-muted-foreground">
+              </div>
+            </Reveal>
+            <Reveal delay={160}>
+              <div className="mt-14">
+                <p className="eyebrow text-brown">Commonly required</p>
+                <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {service.requirements.map((r, i) => (
+                    <li key={r} className="flex gap-4 border-t border-beige pt-4 text-sm leading-relaxed text-inkmuted">
+                      <span className="text-xs text-brown">0{i + 1}</span>
                       {r}
                     </li>
                   ))}
                 </ul>
-                <p className="mt-8 max-w-2xl text-xs leading-relaxed text-muted-foreground">
-                  Requirements vary with the facts of each establishment. {disclaimerShort}
-                </p>
-              </Reveal>
-            </div>
+              </div>
+            </Reveal>
+            <p className="mt-14 max-w-2xl text-xs leading-relaxed text-inkmuted/80">{disclaimerShort}</p>
+          </div>
 
-            <aside className="lg:sticky lg:top-28 lg:self-start">
-              <div className="grain relative bg-ink p-8 text-onink md:p-10">
-                <div className="relative z-10">
-                  <p className="label-micro text-gold-dim">Consultation</p>
-                  <p className="mt-6 font-display text-3xl font-light">
-                    Discuss this requirement.
-                  </p>
-                  <div className="mt-8 flex flex-col gap-3">
-                    <Link
-                      to="/contact"
-                      data-cursor="consult"
-                      className="border border-gold/60 px-6 py-4 text-center label-micro text-gold transition-colors hover:bg-gold hover:text-ink"
-                    >
-                      Request consultation →
-                    </Link>
-                    <a href={telHref} className="border border-onink/20 px-6 py-4 text-center label-micro">
-                      Call office
-                    </a>
-                    <a
-                      href={whatsappHref}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="border border-onink/20 px-6 py-4 text-center label-micro"
-                    >
-                      WhatsApp
-                    </a>
-                  </div>
+          <div>
+            <Reveal>
+              <div className="rounded-[3px] bg-espresso p-8 md:p-10">
+                <p className="eyebrow text-bronze">Consultation</p>
+                <p className="mt-4 font-display text-3xl font-light text-ondark">
+                  Discuss this requirement.
+                </p>
+                <div className="mt-8 grid gap-3">
+                  <Link to="/contact" className="rounded-[3px] bg-cream px-6 py-4 text-center text-sm text-espresso">
+                    Book a Consultation
+                  </Link>
+                  <a
+                    href={telHref}
+                    className="rounded-[3px] border border-ondark/25 px-6 py-4 text-center text-sm text-ondark"
+                  >
+                    Call
+                  </a>
+                  <a
+                    href={whatsappHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-[3px] border border-ondark/25 px-6 py-4 text-center text-sm text-ondark"
+                  >
+                    WhatsApp
+                  </a>
                 </div>
               </div>
+            </Reveal>
 
+            <Reveal delay={120}>
               <div className="mt-12">
-                <p className="label-micro text-muted-foreground">Related areas</p>
-                <ul className="mt-6">
+                <p className="eyebrow text-brown">Related areas</p>
+                <div className="mt-5">
                   {related.map((r) => (
-                    <li key={r!.slug}>
-                      <Link
-                        to="/practice-areas/$slug"
-                        params={{ slug: r!.slug }}
-                        className="group flex items-baseline gap-4 border-b border-foreground/12 py-5"
-                      >
-                        <span className="label-micro text-golddeep">{r!.index}</span>
-                        <span className="font-display text-xl transition-transform duration-300 group-hover:translate-x-1">
-                          {r!.title}
-                        </span>
-                      </Link>
-                    </li>
+                    <Link
+                      key={r!.slug}
+                      to="/practice-areas/$slug"
+                      params={{ slug: r!.slug }}
+                      className="group flex items-center gap-5 border-b border-beige py-5"
+                    >
+                      <img
+                        src={serviceImage[r!.slug]}
+                        alt={serviceAlt[r!.slug] ?? r!.title}
+                        width={400}
+                        height={300}
+                        loading="lazy"
+                        className="h-14 w-20 shrink-0 rounded-[3px] object-cover"
+                      />
+                      <span className="font-display text-xl font-light text-ink transition-colors group-hover:text-brown">
+                        {r!.title}
+                      </span>
+                    </Link>
                   ))}
-                </ul>
-                <Link to="/practice-areas" className="label-micro mt-8 inline-block text-golddeep link-underline">
-                  All {services.length} practice areas →
-                </Link>
+                </div>
               </div>
-            </aside>
+            </Reveal>
           </div>
         </div>
-      </div>
+      </section>
     </>
   );
 }

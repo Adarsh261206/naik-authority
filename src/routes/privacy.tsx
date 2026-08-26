@@ -12,6 +12,8 @@ export const Route = createFileRoute("/privacy")({
       },
       { property: "og:title", content: "Privacy Policy — Ravindra R. Naik, Advocate" },
       { property: "og:description", content: "How enquiry information shared with this office is handled." },
+      { property: "og:type", content: "article" },
+      { name: "twitter:card", content: "summary" },
       { property: "og:url", content: "/privacy" },
     ],
     links: [{ rel: "canonical", href: "/privacy" }],
@@ -49,22 +51,22 @@ const sections = [
 function Privacy() {
   return (
     <>
-      <header className="grain relative bg-ink pb-24 pt-40 text-onink md:pt-52">
-        <div className="relative z-10 mx-auto w-full max-w-[1600px] px-5 md:px-10">
-          <p className="label-micro text-golddeep">Legal / Privacy</p>
-          <h1 className="mt-8 display-lg text-onink">Privacy policy</h1>
+      <header className="bg-ivory pb-16 pt-36 md:pt-48">
+        <div className="mx-auto w-full max-w-[1500px] px-5 md:px-10">
+          <p className="eyebrow text-brown">Legal — Privacy</p>
+          <h1 className="mt-6 display-lg text-ink">Privacy policy</h1>
         </div>
       </header>
-      <div className="bg-ivory py-24 md:py-32">
+      <div className="bg-paper py-20 md:py-28">
         <div className="mx-auto w-full max-w-3xl px-5 md:px-10">
           {sections.map((s, i) => (
-            <section key={s.h} className="border-t border-foreground/12 py-10 first:border-t-0">
-              <p className="label-micro text-golddeep">{String(i + 1).padStart(2, "0")}</p>
-              <h2 className="mt-4 font-display text-3xl font-light">{s.h}</h2>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{s.p}</p>
+            <section key={s.h} className="border-t border-beige py-10 first:border-t-0 first:pt-0">
+              <p className="eyebrow text-brown">{String(i + 1).padStart(2, "0")}</p>
+              <h2 className="mt-4 font-display text-3xl font-light text-ink">{s.h}</h2>
+              <p className="mt-4 text-base leading-relaxed text-inkmuted">{s.p}</p>
             </section>
           ))}
-          <a href={mailHref} className="label-micro text-golddeep link-underline">
+          <a href={mailHref} className="link-quiet mt-6 inline-block text-sm text-ink">
             {advocate.email}
           </a>
         </div>
