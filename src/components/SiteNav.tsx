@@ -37,7 +37,7 @@ export function SiteNav() {
       >
         <Link to="/" className="flex items-center gap-3" aria-label={`${advocate.name} — home`}>
           <Monogram size={scrolled ? 34 : 38} className="transition-all duration-500" />
-          <span className="hidden sm:block leading-tight">
+          <span className="leading-tight">
             <span className="block font-display text-lg text-ink">{advocate.name}</span>
             <span className="block text-[11px] tracking-[0.12em] text-inkmuted">{advocate.title}</span>
           </span>
