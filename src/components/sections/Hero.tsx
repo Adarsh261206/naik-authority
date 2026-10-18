@@ -94,7 +94,7 @@ export function Hero() {
           {/* Bottom information row — aligned to the same grid */}
           <div className="mt-12 grid grid-cols-12 items-baseline gap-x-6 border-t border-beige pt-6 text-[11px] tracking-[0.18em] uppercase text-inkmuted">
             <span className="col-span-5">
-              {advocate.name} · {advocate.qualification}
+              {advocate.firm} · {advocate.name}
             </span>
             <span className="col-span-4">Legal • Compliance • Advisory</span>
             <span className="col-span-3 flex justify-between">

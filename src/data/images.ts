@@ -8,6 +8,9 @@ import records from "@/assets/v3-records.jpg";
 import statement from "@/assets/v3-statement.jpg";
 import about from "@/assets/v3-about.jpg";
 import thane from "@/assets/v3-thane.jpg";
+import ravindraPortrait from "@/assets/ravindra-naik.png";
+import certPosh from "@/assets/cert-posh.png";
+import certFssai from "@/assets/cert-fssai.png";
 
 export const img = {
   heroOffice,
@@ -20,6 +23,7 @@ export const img = {
   statement,
   about,
   thane,
+  ravindraPortrait,
 };
 
 /** Deliberate focal points — never rely on the default centre crop. */
@@ -34,7 +38,25 @@ export const focus = {
   statement: "object-[42%_55%]",
   about: "object-[60%_55%]",
   thane: "object-[50%_35%]",
+  portrait: "object-[50%_40%]",
 } as const;
+
+export const certificates = [
+  {
+    src: certPosh,
+    title: "POSH Train-the-Trainer",
+    issuer: "Embrace Life",
+    detail: "Certificate No. EM/MG/PW/1040 — certified to facilitate POSH sessions.",
+    alt: "Certificate of Achievement from Embrace Life for the POSH Train-the-Trainer programme, awarded to Adv. Ravindra Ramchandra Naik",
+  },
+  {
+    src: certFssai,
+    title: "Food Safety Supervisor",
+    issuer: "FSSAI — FoSTaC (Advance Catering)",
+    detail: "Certificate No. ACACOVID2004027556 — competence certified under FSSAI.",
+    alt: "FSSAI Food Safety Supervisor Certificate of Competence awarded to Ravindra Ramchandra Naik for Advance Catering training",
+  },
+] as const;
 
 type ServiceVisual = { src: string; alt: string; focus: string };
 

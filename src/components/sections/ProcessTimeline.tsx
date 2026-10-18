@@ -1,6 +1,6 @@
 import { processImages } from "@/data/images";
 import { process } from "@/data/site";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 export function ProcessTimeline() {
   return (

@@ -1,5 +1,5 @@
 import { gallery } from "@/data/images";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 export function Gallery() {
   return (

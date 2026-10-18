@@ -113,16 +113,20 @@ bun run lint
 
 ```
 src/
-├── assets/        # Photography & imagery
-├── components/    # Section components (Hero, Gallery, Faq, ...) + shadcn/ui
-├── data/          # Site content: advocate profile, services, FAQs, process
-├── hooks/         # Shared hooks
-├── lib/           # Utilities & SSR error handling
-├── routes/        # File-based TanStack Router routes
-├── server.ts      # Custom SSR server entry (error wrapper)
-├── router.tsx     # Router setup
-├── start.ts       # App bootstrap
-└── styles.css     # Tailwind entry
+├── assets/          # Photography, portrait & certificate imagery
+├── components/
+│   ├── common/      # Shared primitives (Reveal, Monogram)
+│   ├── layout/      # Site chrome (SiteNav, SiteFooter, FloatingActions)
+│   ├── sections/    # Page sections (Hero, AboutEditorial, Certificates, Faq, ...)
+│   └── ui/          # shadcn/ui primitives
+├── data/            # Site content: advocate profile, services, FAQs, process
+├── hooks/           # Shared hooks
+├── lib/             # Utilities & SSR error handling
+├── routes/          # File-based TanStack Router routes
+├── server.ts        # Custom SSR server entry (error wrapper)
+├── router.tsx       # Router setup
+├── start.ts         # App bootstrap
+└── styles.css       # Tailwind entry
 ```
 
 ## Deployment

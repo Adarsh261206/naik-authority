@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Monogram } from "./Monogram";
+import { Monogram } from "../common/Monogram";
 import { advocate, disclaimerShort, mailHref, nav, telHref } from "@/data/site";
 
 export function SiteFooter() {
@@ -12,7 +12,8 @@ export function SiteFooter() {
             <div className="flex items-center gap-3">
               <Monogram size={44} tone="light" />
               <div>
-                <p className="font-display text-2xl text-ondark">{advocate.name}</p>
+                <p className="font-display text-2xl text-ondark">{advocate.firm}</p>
+                <p className="mt-1 text-sm text-ondark">{advocate.name}</p>
                 <p className="text-xs tracking-[0.14em] text-ondarkmuted">
                   {advocate.qualification} · {advocate.title}
                 </p>
@@ -61,7 +62,7 @@ export function SiteFooter() {
           <p className="max-w-3xl text-xs leading-relaxed text-ondarkmuted/80">{disclaimerShort}</p>
           <div className="mt-5 flex flex-col gap-3 text-xs text-ondarkmuted/70 sm:flex-row sm:items-center sm:justify-between">
             <span>
-              © {new Date().getFullYear()} {advocate.name}
+              © {new Date().getFullYear()} {advocate.firm} · {advocate.name}
             </span>
             <span className="flex gap-6">
               <Link to="/privacy" className="link-quiet">

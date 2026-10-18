@@ -1,5 +1,5 @@
 import { focus, img } from "@/data/images";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 export function EditorialIntro() {
   return (

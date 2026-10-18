@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Reveal } from "@/components/Reveal";
+import { Reveal } from "@/components/common/Reveal";
 import { disclaimerShort, getService, telHref, whatsappHref } from "@/data/site";
 import { visualFor } from "@/data/images";
 

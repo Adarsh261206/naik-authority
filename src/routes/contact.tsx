@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ConsultForm } from "@/components/ConsultForm";
-import { Reveal } from "@/components/Reveal";
+import { ConsultForm } from "@/components/sections/ConsultForm";
+import { Reveal } from "@/components/common/Reveal";
 import {
   advocate,
   directionsHref,

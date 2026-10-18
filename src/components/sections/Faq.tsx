@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { faqs } from "@/data/site";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 export function Faq() {
   const [open, setOpen] = useState<number | null>(0);

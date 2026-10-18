@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { visualFor } from "@/data/images";
 import { services } from "@/data/site";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 const R = 210;
 const C = 280;

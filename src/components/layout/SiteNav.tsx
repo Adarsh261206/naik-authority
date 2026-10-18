@@ -1,6 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Monogram } from "./Monogram";
+import { Monogram } from "../common/Monogram";
 import { advocate, nav } from "@/data/site";
 
 export function SiteNav() {
@@ -37,12 +37,12 @@ export function SiteNav() {
           scrolled ? "h-16" : "h-20 md:h-24"
         }`}
       >
-        <Link to="/" className="flex items-center gap-3" aria-label={`${advocate.name} — home`}>
+        <Link to="/" className="flex items-center gap-3" aria-label={`${advocate.firm} — home`}>
           <Monogram size={scrolled ? 34 : 38} className="transition-all duration-500" />
           <span className="leading-tight">
-            <span className="block font-display text-lg text-ink">{advocate.name}</span>
+            <span className="block font-display text-lg text-ink">{advocate.firm}</span>
             <span className="block text-[11px] tracking-[0.12em] text-inkmuted">
-              {advocate.title}
+              {advocate.name}
             </span>
           </span>
         </Link>

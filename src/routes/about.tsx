@@ -1,19 +1,25 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Monogram } from "@/components/Monogram";
-import { Reveal } from "@/components/Reveal";
+import { Monogram } from "@/components/common/Monogram";
+import { Reveal } from "@/components/common/Reveal";
+import { Certificates } from "@/components/sections/Certificates";
 import { advocate, mailHref, services, telHref } from "@/data/site";
 import { focus, img } from "@/data/images";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About | Ravindra R. Naik, Advocate & Legal Consultant — Thane" },
+      {
+        title: `About | ${advocate.firm} — ${advocate.name}, Advocate & Legal Consultant — Thane`,
+      },
       {
         name: "description",
         content:
-          "Profile of Ravindra R. Naik, B.A. LL.B., Advocate & Legal Consultant based in Thane West, assisting businesses with statutory registrations, licensing and labour law compliance.",
+          "Profile of Adv. Ravindra R. Naik, B.A. LL.B., Advocate & Legal Consultant and founder of RN Associate, based in Thane West, assisting businesses with statutory registrations, licensing and labour law compliance.",
       },
-      { property: "og:title", content: "About — Ravindra R. Naik, Advocate & Legal Consultant" },
+      {
+        property: "og:title",
+        content: `About — ${advocate.firm}, ${advocate.name}, Advocate & Legal Consultant`,
+      },
       {
         property: "og:description",
         content:
@@ -36,22 +42,21 @@ function About() {
           <div className="grid grid-cols-12 items-end gap-x-6 gap-y-10 pt-8 pb-16">
             <div className="col-span-12 lg:col-span-5">
               <p className="eyebrow text-brown">The advocate</p>
-              <h1 className="mt-6 display-xl text-ink">
-                Ravindra
-                <br />
-                R. <span className="italic text-brown">Naik</span>
-              </h1>
+              <h1 className="mt-6 display-xl text-ink">{advocate.firm}</h1>
+              <p className="mt-6 font-display text-5xl font-light text-ink md:text-6xl">
+                {advocate.name}
+              </p>
               <p className="mt-8 text-base text-inkmuted">
                 {advocate.qualification} · {advocate.title}
               </p>
             </div>
             <div className="col-span-12 overflow-hidden rounded-tl-[60px] lg:col-span-6 lg:col-start-7">
               <img
-                src={img.about}
-                alt="Advocate's chamber with a pale oak desk, cane chair and bundled case files"
-                width={1600}
-                height={1104}
-                className={`image-reveal aspect-[4/3] w-full object-cover ${focus.about}`}
+                src={img.ravindraPortrait}
+                alt="Adv. Ravindra R. Naik seated at his chamber desk in Thane West"
+                width={1180}
+                height={1046}
+                className={`image-reveal aspect-[6/5] w-full object-cover ${focus.portrait}`}
               />
             </div>
           </div>
@@ -62,8 +67,8 @@ function About() {
         <div className="shell grid  gap-12 lg:grid-cols-[58%_42%] lg:gap-16">
           <Reveal>
             <p className="body-lead">
-              Practising from Thane West, the office assists businesses with labour law compliances,
-              statutory registrations and licensing requirements.
+              Practising from Thane West, the office of {advocate.firm} assists businesses with
+              labour law compliances, statutory registrations and licensing requirements.
             </p>
             <p className="body-lead mt-5">
               Each engagement begins with understanding the activity, the premises and the people
@@ -80,6 +85,10 @@ function About() {
               <Monogram size={52} />
               <p className="eyebrow mt-6 text-brown">Professional details</p>
               <dl className="mt-5 space-y-4 text-sm">
+                <div>
+                  <dt className="text-inkmuted">Firm</dt>
+                  <dd className="font-display text-2xl text-ink">{advocate.firm}</dd>
+                </div>
                 <div>
                   <dt className="text-inkmuted">Name</dt>
                   <dd className="font-display text-2xl text-ink">{advocate.name}</dd>
@@ -110,7 +119,9 @@ function About() {
         </div>
       </section>
 
-      <section className="bg-cream section-y">
+      <Certificates />
+
+      <section className="bg-paper section-y">
         <div className="shell ">
           <p className="eyebrow text-brown">Areas of assistance</p>
           <div className="mt-10 grid gap-x-16 md:grid-cols-2">

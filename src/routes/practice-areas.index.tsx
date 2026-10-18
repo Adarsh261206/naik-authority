@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Reveal } from "@/components/Reveal";
+import { Reveal } from "@/components/common/Reveal";
 import { services } from "@/data/site";
 import { focus, img, visualFor } from "@/data/images";
 

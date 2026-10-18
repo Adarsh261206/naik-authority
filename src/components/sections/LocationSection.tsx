@@ -1,6 +1,6 @@
 import { focus, img } from "@/data/images";
 import { advocate, directionsHref, mapEmbedSrc } from "@/data/site";
-import { Reveal } from "./Reveal";
+import { Reveal } from "../common/Reveal";
 
 export function LocationSection() {
   const o = advocate.office;

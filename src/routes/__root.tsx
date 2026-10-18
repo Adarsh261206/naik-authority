@@ -11,9 +11,9 @@ import {
 import { type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { SiteNav } from "@/components/SiteNav";
-import { SiteFooter } from "@/components/SiteFooter";
-import { FloatingActions } from "@/components/FloatingActions";
+import { SiteNav } from "@/components/layout/SiteNav";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { FloatingActions } from "@/components/layout/FloatingActions";
 import { addressOneLine, advocate } from "@/data/site";
 
 function NotFoundComponent() {
@@ -63,7 +63,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: `${advocate.name} | Advocate & Legal Consultant | Thane` },
+      { title: `${advocate.firm} | ${advocate.name} | Advocate & Legal Consultant | Thane` },
       {
         name: "description",
         content:
@@ -71,7 +71,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: advocate.name },
       { name: "theme-color", content: "#F5F1E8" },
-      { property: "og:site_name", content: advocate.name },
+      { property: "og:site_name", content: advocate.firm },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -92,8 +92,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "LegalService",
-          name: advocate.name,
+          name: advocate.firm,
           description: `${advocate.title} assisting businesses with labour law, statutory registrations, licences and compliance requirements.`,
+          founder: {
+            "@type": "Person",
+            name: advocate.name,
+            jobTitle: advocate.title,
+          },
           telephone: advocate.phoneIntl,
           email: advocate.email,
           areaServed: "Thane, Maharashtra, India",
