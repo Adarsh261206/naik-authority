@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { Monogram } from "../common/Monogram";
 import { advocate, disclaimerShort, mailHref, nav, telHref } from "@/data/site";
 
 export function SiteFooter() {
@@ -10,7 +9,13 @@ export function SiteFooter() {
         <div className="grid grid-cols-12 gap-x-6 gap-y-12">
           <div className="col-span-12 md:col-span-5">
             <div className="flex items-center gap-3">
-              <Monogram size={44} tone="light" />
+              <img
+                src="/logo-emblem.png"
+                alt=""
+                width={608}
+                height={488}
+                className="h-14 w-auto rounded-[3px]"
+              />
               <div>
                 <p className="font-display text-2xl text-ondark">{advocate.firm}</p>
                 <p className="mt-1 text-sm text-ondark">{advocate.name}</p>

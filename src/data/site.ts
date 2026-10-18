@@ -1,5 +1,5 @@
 export const advocate = {
-  firm: "RN Associate",
+  firm: "RN Associates",
   name: "Adv. Ravindra R. Naik",
   firstName: "Ravindra",
   lastName: "R. Naik",

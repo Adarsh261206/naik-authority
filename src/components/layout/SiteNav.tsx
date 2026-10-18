@@ -1,6 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { Monogram } from "../common/Monogram";
 import { advocate, nav } from "@/data/site";
 
 export function SiteNav() {
@@ -38,7 +37,13 @@ export function SiteNav() {
         }`}
       >
         <Link to="/" className="flex items-center gap-3" aria-label={`${advocate.firm} — home`}>
-          <Monogram size={scrolled ? 34 : 38} className="transition-all duration-500" />
+          <img
+            src="/logo-emblem.png"
+            alt=""
+            width={608}
+            height={488}
+            className={`w-auto rounded-[3px] transition-all duration-500 ${scrolled ? "h-9" : "h-10 md:h-11"}`}
+          />
           <span className="leading-tight">
             <span className="block font-display text-lg text-ink">{advocate.firm}</span>
             <span className="block text-[11px] tracking-[0.12em] text-inkmuted">

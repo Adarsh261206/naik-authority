@@ -1,5 +1,4 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Monogram } from "@/components/common/Monogram";
 import { Reveal } from "@/components/common/Reveal";
 import { Certificates } from "@/components/sections/Certificates";
 import { advocate, mailHref, services, telHref } from "@/data/site";
@@ -82,7 +81,13 @@ function About() {
           </Reveal>
           <Reveal delay={120}>
             <div className="border-t border-beige pt-8">
-              <Monogram size={52} />
+              <img
+                src="/logo-emblem.png"
+                alt={`${advocate.firm} emblem`}
+                width={608}
+                height={488}
+                className="h-16 w-auto rounded-[3px]"
+              />
               <p className="eyebrow mt-6 text-brown">Professional details</p>
               <dl className="mt-5 space-y-4 text-sm">
                 <div>
