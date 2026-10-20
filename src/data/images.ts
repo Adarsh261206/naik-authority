@@ -1,4 +1,4 @@
-import heroOffice from "@/assets/v3-hero-law-office.jpg";
+import hero from "@/assets/hero-ravindra-naik.png";
 import library from "@/assets/v3-library.jpg";
 import documents from "@/assets/v3-documents.jpg";
 import consultation from "@/assets/v3-business.jpg";
@@ -13,7 +13,7 @@ import certPosh from "@/assets/cert-posh.png";
 import certFssai from "@/assets/cert-fssai.png";
 
 export const img = {
-  heroOffice,
+  hero,
   library,
   documents,
   consultation,
@@ -28,7 +28,7 @@ export const img = {
 
 /** Deliberate focal points — never rely on the default centre crop. */
 export const focus = {
-  heroOffice: "object-[62%_58%]",
+  hero: "object-[50%_45%]",
   library: "object-[55%_70%]",
   documents: "object-[58%_55%]",
   consultation: "object-[50%_45%]",

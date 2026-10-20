@@ -9,11 +9,11 @@ export function Hero() {
       <div className="md:hidden">
         <div className="overflow-hidden pt-20">
           <img
-            src={img.heroOffice}
-            alt="Advocate's desk with case files, contracts and law volumes in warm morning light"
-            width={1280}
-            height={1600}
-            className={`image-reveal h-[46vh] min-h-[300px] w-full object-cover ${focus.heroOffice}`}
+            src={img.hero}
+            alt="Adv. Ravindra R. Naik at his desk with labour law volumes and nameplate"
+            width={708}
+            height={604}
+            className={`image-reveal h-[46vh] min-h-[300px] w-full object-cover ${focus.hero}`}
           />
         </div>
         <div className="shell pt-10 pb-16">
@@ -81,11 +81,11 @@ export function Hero() {
             <div className="col-span-12 lg:col-span-7">
               <div className="overflow-hidden rounded-tl-[64px]">
                 <img
-                  src={img.heroOffice}
-                  alt="Advocate's desk with case files, contracts and law volumes in warm morning light"
-                  width={1280}
-                  height={1600}
-                  className={`image-reveal aspect-[4/3] w-full object-cover ${focus.heroOffice}`}
+                  src={img.hero}
+                  alt="Adv. Ravindra R. Naik at his desk with labour law volumes and nameplate"
+                  width={708}
+                  height={604}
+                  className={`image-reveal aspect-[4/3] w-full object-cover ${focus.hero}`}
                 />
               </div>
             </div>
